@@ -25,5 +25,8 @@ export const GlobalCss = createGlobalStyle`
 export const Container = styled.div`
   max-width: 1024px;
   width: 100%;
-  margin: 0 auto;
+  margin: 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `

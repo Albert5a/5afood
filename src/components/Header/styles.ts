@@ -4,7 +4,6 @@ import { Colors } from '../../styles'
 export const HeaderBar = styled.header`
   background-color: ${Colors.colorPrimary};
   padding: 24px;
-  border-radius: 16px;
   display: flex;
   height: 240px;
   flex-direction: column;
