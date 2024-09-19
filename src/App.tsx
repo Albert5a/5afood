@@ -1,7 +1,15 @@
 import React from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Container, GlobalCss } from './styles'
 import Header from './components/Header'
-import CardHome from './components/CardHome'
+import { ProductsList } from './components/ProductsList'
+
+const routes = createBrowserRouter([
+  {
+    path: '/',
+    element: <ProductsList />
+  }
+])
 
 function App() {
   return (
@@ -10,12 +18,7 @@ function App() {
       <div>
         <Header />
         <Container>
-          <CardHome title="Hioki Sushi" />
-          <CardHome title="La Dolce Vita Tratoria" />
-          <CardHome title="Hioki Sushi" />
-          <CardHome title="La Dolce Vita Tratoria" />
-          <CardHome title="Hioki Sushi" />
-          <CardHome title="La Dolce Vita Tratoria" />
+          <RouterProvider router={routes} />
         </Container>
       </div>
     </>

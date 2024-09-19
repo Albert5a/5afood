@@ -1,6 +1,6 @@
 import React from 'react'
 import { CardComponent } from './styles'
-import ImageCardHome from '../ImageCardHome'
+import ImageProduct from '../ImageProduct'
 import Button from '../Button'
 import star from '../../assets/images/star.png'
 
@@ -8,10 +8,10 @@ type Props = {
   title: string
 }
 
-const CardHome = ({ title }: Props) => {
+const Product = ({ title }: Props) => {
   return (
     <CardComponent>
-      <ImageCardHome />
+      <ImageProduct />
       <div className="InfoContainter">
         <div className="TitleValue">
           <h2>{title}</h2>
@@ -31,11 +31,11 @@ const CardHome = ({ title }: Props) => {
             provavelmente programa melhor do que eu, mas eu tenho sede de
             aprender e não vou parar.
           </p>
-          <Button color="info">Saiba mais</Button>
+          <Button type="link" to='/produto' title='Saiba mais'>Saiba mais</Button>
         </div>
       </div>
     </CardComponent>
   )
 }
 
-export default CardHome
+export default Product

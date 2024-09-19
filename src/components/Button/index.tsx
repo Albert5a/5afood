@@ -1,15 +1,28 @@
-import React from "react";
-import { ButtonContainer } from "./styles";
+import React from 'react'
+import { ButtonContainer, ButtonLink } from './styles'
 
 export type Props = {
-  color: 'info' | 'buy';
-  children: string;
+  type: 'button' | 'link'
+  title: string
+  to?: string
+  onClick?: () => void
+  children: string
 }
 
-const Button = ({color = 'buy', children}: Props) => {
+const Button = ({ type, title, to, onClick, children }: Props) => {
+  if (type === 'button') {
+    return (
+      <ButtonContainer type="button" title={title} onClick={onClick}>
+        {children}
+      </ButtonContainer>
+    )
+  }
+
   return (
-    <ButtonContainer color={color}>{children}</ButtonContainer>
+    <ButtonLink to={to as string} title={title}>
+      {children}
+    </ButtonLink>
   )
 }
 
-export default Button;
+export default Button

@@ -1,13 +1,24 @@
 import styled from "styled-components";
-import { Props } from ".";
+import { Link } from "react-router-dom";
 import { Colors } from "../../styles";
 
-export const ButtonContainer = styled.button<Props>`
+export const ButtonContainer = styled.button`
   padding: 8px;
-  background-color: ${props => props.color === 'buy' ? `${Colors.white}` : `${Colors.colorSecondary}`};
-  color: ${props => props.color === 'buy' ? `${Colors.colorSecondary}` : `${Colors.white}`};
+  background-color: ${Colors.white};
+  color: ${Colors.colorSecondary};
   border: none;
   display: inline-block;
   margin-top: 16px;
   cursor: pointer;
+`
+
+export const ButtonLink = styled(Link)`
+  padding: 8px;
+  background-color: ${Colors.colorSecondary};
+  color: ${Colors.white};
+  border: none;
+  display: inline-block;
+  margin-top: 16px;
+  cursor: pointer;
+  text-decoration: none;
 `

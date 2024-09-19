@@ -14,7 +14,7 @@ export const HeaderBar = styled.header`
 export const Subtitle = styled.h2`
   font-size: 36px;
   font-weight: bold;
-  width: 35%;
+  width: 540px;
   text-align: center;
 `
 
