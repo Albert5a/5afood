@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 import { Colors } from '../../styles'
+import VectorHeader from '../../assets/images/VectorHeader.png'
 
 export const HeaderBar = styled.header`
   background-color: ${Colors.colorPrimary};
+  background-image: url(${VectorHeader});
+  background-size: cover;
+  background-position: center;
   padding: 24px;
   display: flex;
   height: 240px;

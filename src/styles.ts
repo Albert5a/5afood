@@ -22,6 +22,10 @@ export const GlobalCss = createGlobalStyle`
   }
 `
 
+export const AppContainer = styled.div`
+  background-color: ${Colors.white};
+`
+
 export const Container = styled.div`
   max-width: 1024px;
   width: 100%;

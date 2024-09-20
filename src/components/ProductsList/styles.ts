@@ -1,12 +1,19 @@
 import styled from "styled-components";
+import { Props } from ".";
+import { CardComponent } from "../Product/styles";
+import { Colors } from "../../styles";
 
 export const Container = styled.section`
   padding: 48px 0;
 
 `
 
-export const List = styled.ul`
+export const List = styled.ul<Props>`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 48px;
+  grid-template-columns: ${props => props.columns === 'home' ? '1fr 1fr' : '1fr 1fr 1fr'};
+  column-gap: 24px;
+
+  ${CardComponent} {
+    background-color: ${props => props.columns === 'restaurant' ? Colors.colorSecondary : Colors.white};
+  }
 `

@@ -1,13 +1,13 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Container, GlobalCss } from './styles'
+import { AppContainer, Container, GlobalCss } from './styles'
 import Header from './components/Header'
 import { ProductsList } from './components/ProductsList'
 
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <ProductsList />
+    element: <ProductsList columns='home' />
   }
 ])
 
@@ -15,12 +15,12 @@ function App() {
   return (
     <>
       <GlobalCss />
-      <div>
-        <Header />
+      <Header />
+      <AppContainer>
         <Container>
           <RouterProvider router={routes} />
         </Container>
-      </div>
+      </AppContainer>
     </>
   )
 }

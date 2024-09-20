@@ -1,23 +1,35 @@
 import styled from 'styled-components'
 import { Colors } from '../../styles'
-import { TagContainer } from '../Tag/styles'
 
 export const CardComponent = styled.div`
-  width: 480px;
-  height: 480px;
-  margin-top: 8px;
+  width: 472px;
+  height: 398px;
+  margin-top: 40px;
+  position: relative;
+  border-right: 1px solid ${Colors.colorSecondary};
+  border-bottom: 1px solid ${Colors.colorSecondary};
+  border-left: 1px solid ${Colors.colorSecondary};
+
 
   .InfoContainter {
-    border-right: 1px solid ${Colors.colorSecondary};
-    border-bottom: 1px solid ${Colors.colorSecondary};
-    border-left: 1px solid ${Colors.colorSecondary};
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 8px;
+    height: 170px;
   }
 
-  .TitleValue {
+  .TitleValuationContent {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    padding: 16px 8px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+    }
 
     .ValueContainer {
       display: flex;
@@ -30,14 +42,11 @@ export const CardComponent = styled.div`
       }
     }
   }
+`
 
-  .InfoContainer {
-    gap: 16px;
-    padding: 0 8px 8px 8px;
-  }
-
-  ${TagContainer} {
-    position: absolute;
-    /* top: 32px; */
-  }
+export const Infos = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
 `
