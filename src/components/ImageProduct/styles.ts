@@ -11,5 +11,6 @@ export const ImageContainer = styled.div`
   .TagContainer {
     display: flex;
     justify-content: end;
+    margin-left: 8px;
   }
 `

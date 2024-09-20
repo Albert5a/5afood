@@ -3,7 +3,7 @@ import { ImageContainer } from './styles'
 import Tag from '../Tag'
 import sushiImg from '../../assets/images/sushi.png'
 
-const ImageCardHome = () => {
+const ImageProduct = () => {
   return (
     <ImageContainer style={{ backgroundImage: `url(${sushiImg})` }}>
       <div className="TagContainer">
@@ -14,4 +14,4 @@ const ImageCardHome = () => {
   )
 }
 
-export default ImageCardHome
+export default ImageProduct
