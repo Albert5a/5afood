@@ -3,23 +3,30 @@ import { Colors } from '../../styles'
 
 export const CardComponent = styled.div`
   width: 472px;
-  height: 398px;
   margin-top: 40px;
   position: relative;
+
+  img {
+    display: block;
+  }
+`
+
+export const Infos = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+`
+export const InfoContainter = styled.div`
+  width: 472px;
+  height: 181px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 8px;
   border-right: 1px solid ${Colors.colorSecondary};
   border-bottom: 1px solid ${Colors.colorSecondary};
   border-left: 1px solid ${Colors.colorSecondary};
-
-
-  .InfoContainter {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 8px 8px;
-    height: 170px;
-  }
 
   .TitleValuationContent {
     display: flex;
@@ -42,11 +49,4 @@ export const CardComponent = styled.div`
       }
     }
   }
-`
-
-export const Infos = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  display: flex;
 `

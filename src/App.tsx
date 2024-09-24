@@ -1,27 +1,27 @@
 import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { BrowserRouter, useLocation } from 'react-router-dom'
 import { AppContainer, Container, GlobalCss } from './styles'
 import Header from './components/Header'
-import { ProductsList } from './components/ProductsList'
+import HeaderStore from './components/HeaderStore'
+import Pages from './routes'
 
-const routes = createBrowserRouter([
-  {
-    path: '/',
-    element: <ProductsList columns='home' />
-  }
-])
+const HeaderLayout = () => {
+  const location = useLocation()
+
+  return <>{location.pathname === '/' ? <Header /> : <HeaderStore />}</>
+}
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <GlobalCss />
-      <Header />
+      <HeaderLayout />
       <AppContainer>
         <Container>
-          <RouterProvider router={routes} />
+          <Pages />
         </Container>
       </AppContainer>
-    </>
+    </BrowserRouter>
   )
 }
 

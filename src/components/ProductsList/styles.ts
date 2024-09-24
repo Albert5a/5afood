@@ -8,7 +8,7 @@ export const Container = styled.section`
 
 `
 
-export const List = styled.ul<Props>`
+export const List = styled.ul<Omit<Props, 'restaurants'>>`
   display: grid;
   grid-template-columns: ${props => props.columns === 'home' ? '1fr 1fr' : '1fr 1fr 1fr'};
   column-gap: 24px;

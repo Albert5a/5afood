@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardComponent, Infos } from './styles'
+import { CardComponent, InfoContainter, Infos } from './styles'
 // import ImageProduct from '../ImageProduct'
 import Button from '../Button'
 import star from '../../assets/images/star.png'
@@ -13,16 +13,17 @@ type Props = {
   typeFood?: string
   image: string
   infos: string[]
+  to?: string
 }
 
-const Product = ({ title, valuation, description, image, infos }: Props) => {
+const Product = ({ title, valuation, description, image, infos, to }: Props) => {
   return (
     <CardComponent>
       <img src={image} alt="title" />
       <Infos>
         {infos.map(info => <Tag key={info}>{info}</Tag>)}
       </Infos>
-      <div className="InfoContainter">
+      <InfoContainter>
         <div className="TitleValuationContent">
           <h2>{title}</h2>
           <div className="ValueContainer">
@@ -31,10 +32,10 @@ const Product = ({ title, valuation, description, image, infos }: Props) => {
           </div>
         </div>
           <p>{description}</p>
-          <Button type="link" to="/produto" title="Saiba mais">
+          <Button type="link" to={to} title="Saiba mais">
             Saiba mais
           </Button>
-      </div>
+      </InfoContainter>
     </CardComponent>
   )
 }
