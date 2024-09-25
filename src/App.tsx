@@ -4,6 +4,7 @@ import { AppContainer, Container, GlobalCss } from './styles'
 import Header from './components/Header'
 import HeaderStore from './components/HeaderStore'
 import Pages from './routes'
+import Footer from './components/Footer'
 
 const HeaderLayout = () => {
   const location = useLocation()
@@ -21,6 +22,7 @@ function App() {
           <Pages />
         </Container>
       </AppContainer>
+      <Footer />
     </BrowserRouter>
   )
 }
