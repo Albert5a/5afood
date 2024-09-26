@@ -1,24 +1,29 @@
 import React from 'react'
-import { Container, GlobalCss } from './styles'
+import { BrowserRouter, useLocation } from 'react-router-dom'
+import { AppContainer, Container, GlobalCss } from './styles'
 import Header from './components/Header'
-import CardHome from './components/CardHome'
+import HeaderStore from './components/HeaderStore'
+import Pages from './routes'
+import Footer from './components/Footer'
+
+const HeaderLayout = () => {
+  const location = useLocation()
+
+  return <>{location.pathname === '/' ? <Header /> : <HeaderStore />}</>
+}
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <GlobalCss />
-      <div>
-        <Header />
+      <HeaderLayout />
+      <AppContainer>
         <Container>
-          <CardHome title="Hioki Sushi" />
-          <CardHome title="La Dolce Vita Tratoria" />
-          <CardHome title="Hioki Sushi" />
-          <CardHome title="La Dolce Vita Tratoria" />
-          <CardHome title="Hioki Sushi" />
-          <CardHome title="La Dolce Vita Tratoria" />
+          <Pages />
         </Container>
-      </div>
-    </>
+      </AppContainer>
+      <Footer />
+    </BrowserRouter>
   )
 }
 

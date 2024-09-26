@@ -1,17 +1,17 @@
 import React from 'react'
 
-import { HeaderBar, Subtitle } from './styles'
+import { HeaderBar } from './styles'
 import logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom'
 
-const Header = () => (
+const HeaderStore = () => (
   <HeaderBar>
+    <h3>Restaurantes</h3>
     <Link to="/">
       <img src={logo} alt="5a food" />
     </Link>
-
-    <Subtitle>Viva experiências gastronômicas no conforto da sua casa</Subtitle>
+    <p>0 produto(s) no carrinho</p>
   </HeaderBar>
 )
 
-export default Header
+export default HeaderStore
