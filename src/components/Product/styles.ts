@@ -5,10 +5,10 @@ export const CardComponent = styled.div`
   width: 472px;
   margin-top: 40px;
   position: relative;
+`
 
-  img {
-    display: block;
-  }
+export const ProductImage = styled.img`
+  display: block;
 `
 
 export const Infos = styled.div`
@@ -22,31 +22,35 @@ export const InfoContainter = styled.div`
   height: 181px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 8px 8px;
+  padding: 8px;
   border-right: 1px solid ${Colors.colorSecondary};
   border-bottom: 1px solid ${Colors.colorSecondary};
   border-left: 1px solid ${Colors.colorSecondary};
+  justify-content: space-between;
+`
 
-  .TitleValuationContent {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+export const TitleValuationContent = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 16px;
+`
 
-    h2 {
-      font-size: 18px;
-      font-weight: bold;
-    }
+export const ProductTitle = styled.h2`
+  font-size: 18px;
+  font-weight: bold;
+`
 
-    .ValueContainer {
-      display: flex;
-      align-items: center;
+export const ValuationContent = styled.div`
+  display: flex;
+  align-items: center;
+`
 
-      .Value {
-        font-size: 18px;
-        font-weight: bold;
-        margin-right: 4px;
-      }
-    }
-  }
+export const Valuation = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 4px;
+`
+export const Description = styled.p`
+   font-size: 14px;
 `
