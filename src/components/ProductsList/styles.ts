@@ -4,7 +4,7 @@ import { CardComponent } from "../Product/styles";
 import { Colors } from "../../styles";
 
 export const Container = styled.section`
-  padding: 48px 0;
+  padding: 48px 0 120px 0;
 
 `
 

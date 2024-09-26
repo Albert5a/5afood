@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Colors } from '../../styles'
 
-export const FooterBar = styled.header`
+export const FooterContainer = styled.header`
   background-color: ${Colors.colorPrimary};
   height: 280px;
   display: flex;
@@ -22,6 +22,7 @@ export const FooterContent = styled.div`
 
   p {
     text-align: center;
+    font-size: 12px;
   }
 `
 
