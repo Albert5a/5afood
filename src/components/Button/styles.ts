@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 import { Colors } from '../../styles'
 
 export const ButtonContainer = styled.button`
-  padding: 8px;
-  background-color: ${Colors.white};
+  width: 304px;
+  height: 24px;
+  padding: 4px;
+  background-color: ${Colors.pinkLight};
   color: ${Colors.colorSecondary};
+  font-size: 14px;
+  font-weight: bold;
   border: none;
   display: inline-block;
   margin-top: 16px;

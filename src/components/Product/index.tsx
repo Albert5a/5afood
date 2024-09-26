@@ -1,5 +1,15 @@
 import React from 'react'
-import { CardComponent, InfoContainter, Infos } from './styles'
+import {
+  CardComponent,
+  Description,
+  InfoContainter,
+  Infos,
+  ProductImage,
+  ProductTitle,
+  TitleValuationContent,
+  Valuation,
+  ValuationContent
+} from './styles'
 // import ImageProduct from '../ImageProduct'
 import Button from '../Button'
 import star from '../../assets/images/star.png'
@@ -16,25 +26,34 @@ type Props = {
   to?: string
 }
 
-const Product = ({ title, valuation, description, image, infos, to }: Props) => {
+const Product = ({
+  title,
+  valuation,
+  description,
+  image,
+  infos,
+  to
+}: Props) => {
   return (
     <CardComponent>
-      <img src={image} alt="title" />
+      <ProductImage src={image} alt="title" />
       <Infos>
-        {infos.map(info => <Tag key={info}>{info}</Tag>)}
+        {infos.map((info) => (
+          <Tag key={info}>{info}</Tag>
+        ))}
       </Infos>
       <InfoContainter>
-        <div className="TitleValuationContent">
-          <h2>{title}</h2>
-          <div className="ValueContainer">
-            <p className="Value">{valuation}</p>
-            <img src={star} alt="Estrelas" />
-          </div>
+        <div>
+          <TitleValuationContent>
+            <ProductTitle>{title}</ProductTitle>
+            <ValuationContent className="ValueContainer">
+              <Valuation className="Value">{valuation}</Valuation>
+              <img src={star} alt="Estrelas" />
+            </ValuationContent>
+          </TitleValuationContent>
+          <Description>{description}</Description>
         </div>
-          <p>{description}</p>
-          <Button type="link" to={to} title="Saiba mais">
-            Saiba mais
-          </Button>
+        <Button type="link" to={to} title="Saiba mais" />
       </InfoContainter>
     </CardComponent>
   )
