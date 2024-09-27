@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 import { ProductsList } from '../../components/ProductsList'
 import Restaurants from '../../models/Restaurant'
@@ -65,7 +66,8 @@ const restaurants: Restaurants[] = [
 ]
 
 const Restaurant = () => {
-  return <ProductsList columns="home" restaurants={restaurants} />
+  const { id } = useParams();
+  return (<ProductsList columns="restaurant" restaurants={restaurants} />)
 }
 
 export default Restaurant

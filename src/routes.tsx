@@ -6,10 +6,10 @@ import Restaurant from './pages/Restaurant'
 const Pages = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/la-dolce-vita-trattoria" element={<Restaurant />} />
-    <Route path="/hioki-sushi" element={<Home />} />
+    <Route path="/restaurants/:id" element={<Restaurant />} />
+    <Route path="/restaurants/:id" element={<Restaurant />} />
   </Routes>
 )
 
-
+// la-dolce-vita-trattoria hioki-sushi
 export default Pages

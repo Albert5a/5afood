@@ -2,7 +2,7 @@ import React from 'react'
 import Product from '../Product'
 import { Container, List } from './styles'
 import Restaurants from '../../models/Restaurant'
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 
 export type Props = {
   columns: 'home' | 'restaurant'
@@ -10,8 +10,8 @@ export type Props = {
 }
 
 export const ProductsList = ({ columns, restaurants }: Props) => {
-  const location = useLocation();
-  columns = location.pathname === '/' ? 'home' : 'restaurant';
+  // const location = useLocation();
+  // columns = location.pathname === '/' ? 'home' : 'restaurant';
   return (
   <Container>
     <List columns={columns}>
@@ -25,7 +25,7 @@ export const ProductsList = ({ columns, restaurants }: Props) => {
             image={restaurant.image}
             valuation={restaurant.valuation}
             infos={restaurant.infos}
-            to={`/${formattedTitle}`}
+            to={`/restaurants/${formattedTitle}`}
           />
         )
       })}

@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import { Colors } from '../../styles'
-import VectorHeader from '../../assets/images/VectorHeader.png'
 
-export const HeaderBar = styled.header`
+export const HeaderBar = styled.div`
   background-color: ${Colors.colorPrimary};
-  background-image: url(${VectorHeader});
+
   background-size: cover;
   background-position: center;
   padding: 24px;
@@ -21,4 +20,3 @@ export const Subtitle = styled.h2`
   width: 540px;
   text-align: center;
 `
-
