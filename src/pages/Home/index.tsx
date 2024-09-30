@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProductsList } from '../../components/ProductsList'
+import { CardList } from '../../components/CardList'
 import Restaurants from '../../models/Restaurant'
 
 import sushi from '../../assets/images/sushi.png'
@@ -65,7 +65,7 @@ const restaurants: Restaurants[] = [
 ]
 
 const Home = () => {
-  return <ProductsList columns="home" restaurants={restaurants} />
+  return <CardList columns="home" restaurants={restaurants} />
 }
 
 export default Home

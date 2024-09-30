@@ -26,7 +26,7 @@ type Props = {
   to?: string
 }
 
-const Product = ({
+const RestaurantsCard = ({
   title,
   valuation,
   description,
@@ -59,4 +59,4 @@ const Product = ({
   )
 }
 
-export default Product
+export default RestaurantsCard
