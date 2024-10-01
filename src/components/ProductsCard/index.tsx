@@ -28,7 +28,7 @@ const ProductsCard = ({ title, description, image }: Props) => {
           </TitleValuationContent>
           <Description>{description}</Description>
         </div>
-        <Button type="link" title="Saiba mais" />
+        <Button type="link" title="Saiba mais">Saiba mais</Button>
       </InfoContainter>
     </CardComponent>
   )

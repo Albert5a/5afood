@@ -53,7 +53,7 @@ const RestaurantsCard = ({
           </TitleValuationContent>
           <Description>{description}</Description>
         </div>
-        <Button type="link" to={to} title="Saiba mais" />
+        <Button type="link" to={to} title="Saiba mais">Saiba mais</Button>
       </InfoContainter>
     </CardComponent>
   )

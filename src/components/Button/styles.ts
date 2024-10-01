@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Colors } from '../../styles'
 
 export const ButtonContainer = styled.button`
-  width: 304px;
+  width: 100%;
   height: 24px;
   padding: 4px;
   background-color: ${Colors.pinkLight};

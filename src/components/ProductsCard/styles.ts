@@ -17,11 +17,12 @@ export const ProductImage = styled.img`
 
 export const InfoContainter = styled.div`
   color: ${Colors.pinkLight};
-  width: 300px;
+  width: 100%;
   display: flex;
-  height: 163px;
+  height: 173px;
   flex-direction: column;
   padding: 0;
+  margin: 0;
   justify-content: space-between;
 `
 
