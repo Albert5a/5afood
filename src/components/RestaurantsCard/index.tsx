@@ -15,6 +15,8 @@ import Button from '../Button'
 import star from '../../assets/images/star.png'
 import Tag from '../Tag'
 
+// posso refatorar com o ProductsCard trocando type por {interface RestaurantProps extends ProductsProps{}}
+
 type Props = {
   title: string
   category?: string

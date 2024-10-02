@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, List } from './styles'
 import Restaurants from '../../models/Restaurant'
 import RestaurantsCard from '../RestaurantsCard'
@@ -14,6 +14,7 @@ export type Props = {
 }
 
 export const CardList = ({ columns, restaurants, products }: Props) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
   return (
     <>
       <Container>
@@ -44,11 +45,14 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
                 title={product.title}
                 description={product.description}
                 image={product.image}
+                onClick={() => setModalIsOpen(true)}
               />
             ))}
         </List>
       </Container>
-      <ProductModal />
+      <ProductModal onClick={() => modalIsOpen ? setModalIsOpen(false) : setModalIsOpen(true)} className={modalIsOpen ? 'visible' : ''} />
     </>
   )
 }
+
+// Refatorar ProductModal, descomponentizalo para termos um <div .overlay>

@@ -12,12 +12,17 @@ import {
   ModalTitle
 } from './styles'
 import Button from '../Button'
-const ProductModal = () => {
+
+type Props = {
+  className: string
+  onClick: () => void
+}
+const ProductModal = ({className, onClick}: Props) => {
   return (
-    <ModalContainer>
+    <ModalContainer onClick={onClick} className={className}>
       <ModalContent>
         <header>
-          <CloseButton src={Close} alt="Fechar" />
+          <CloseButton onClick={onClick} src={Close} alt="Fechar" />
         </header>
         <InfoContent>
           <img src={Pizza} alt="Pizza" />

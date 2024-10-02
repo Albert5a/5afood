@@ -8,15 +8,21 @@ export const ModalContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   z-index: 2;
+
+  &.visible {
+    display: flex;
+  }
 
   ${ButtonContainer} {
     width: 218px;
     height: 24px;
   }
+
+  // ao descomponentizar modal after vira uma classe .overlay para que o fechamento do modal aconteça somente ao clicar no fundo
 
   &::after {
     content: '';
