@@ -8,6 +8,8 @@ export const CardComponent = styled.div`
 `
 
 export const ProductImage = styled.img`
+  width: 472px;
+  height: 217px;
   display: block;
 `
 
@@ -52,5 +54,5 @@ export const Valuation = styled.p`
   margin-right: 4px;
 `
 export const Description = styled.p`
-   font-size: 14px;
+  font-size: 14px;
 `

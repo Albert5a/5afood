@@ -1,20 +1,40 @@
 import React, { useState } from 'react'
 import { Container, List } from './styles'
-import Restaurants from '../../models/Restaurant'
 import RestaurantsCard from '../RestaurantsCard'
 import ProductsCard from '../ProductsCard'
-import Products from '../../models/Products'
 import ProductModal from '../ProductModal'
-// import { useLocation } from 'react-router-dom'
+import { Restaurants } from '../../pages/Home'
 
 export type Props = {
   columns: 'home' | 'restaurant'
   restaurants?: Restaurants[]
-  products?: Products[]
+  products?: Restaurants[]
 }
 
 export const CardList = ({ columns, restaurants, products }: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(price)
+  }
+
+  const getRestaurantTags = (restaurant: Restaurants) => {
+    const tags = []
+
+    if (restaurant.tipo) {
+      tags.push(restaurant.tipo)
+    }
+
+    if (restaurant.destacado) {
+      tags.push('Destaque da semana')
+    }
+
+    return tags
+  }
+
   return (
     <>
       <Container>
@@ -22,17 +42,17 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
           {columns === 'home' &&
             restaurants &&
             restaurants.map((restaurant) => {
-              const formattedTitle = restaurant.title
+              const formattedTitle = restaurant.titulo
                 .toLowerCase()
                 .replace(/ /g, '-')
               return (
                 <RestaurantsCard
                   key={restaurant.id}
-                  title={restaurant.title}
-                  description={restaurant.description}
-                  image={restaurant.image}
-                  valuation={restaurant.valuation}
-                  infos={restaurant.infos}
+                  title={restaurant.titulo}
+                  description={restaurant.descricao}
+                  image={restaurant.capa}
+                  valuation={restaurant.avaliacao}
+                  infos={getRestaurantTags(restaurant)}
                   to={`/restaurants/${formattedTitle}`}
                 />
               )
@@ -42,15 +62,20 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
             products.map((product) => (
               <ProductsCard
                 key={product.id}
-                title={product.title}
-                description={product.description}
-                image={product.image}
+                title={product.titulo}
+                description={product.descricao}
+                image={product.capa}
                 onClick={() => setModalIsOpen(true)}
               />
             ))}
         </List>
       </Container>
-      <ProductModal onClick={() => modalIsOpen ? setModalIsOpen(false) : setModalIsOpen(true)} className={modalIsOpen ? 'visible' : ''} />
+      <ProductModal
+        onClick={() =>
+          modalIsOpen ? setModalIsOpen(false) : setModalIsOpen(true)
+        }
+        className={modalIsOpen ? 'visible' : ''}
+      />
     </>
   )
 }

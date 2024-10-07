@@ -20,7 +20,7 @@ import Tag from '../Tag'
 type Props = {
   title: string
   category?: string
-  valuation: string
+  valuation: number
   description: string
   typeFood?: string
   image: string
@@ -55,7 +55,9 @@ const RestaurantsCard = ({
           </TitleValuationContent>
           <Description>{description}</Description>
         </div>
-        <Button type="link" to={to} title="Saiba mais">Saiba mais</Button>
+        <Button type="link" to={to} title="Saiba mais">
+          Saiba mais
+        </Button>
       </InfoContainter>
     </CardComponent>
   )
