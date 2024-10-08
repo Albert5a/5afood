@@ -38,13 +38,12 @@ const ProductModal = ({
   price,
   image
 }: Props) => {
-
   // if (!price) {
   //   return <h3>...carregando</h3>
   // }
 
   return (
-    <ModalContainer onClick={onClick} className={className}>
+    <ModalContainer className={className}>
       <ModalContent>
         <header>
           <CloseButton onClick={onClick} src={Close} alt="Fechar" />
@@ -64,6 +63,7 @@ const ProductModal = ({
           </div>
         </InfoContent>
       </ModalContent>
+      <div onClick={onClick} className="overlay"></div>
     </ModalContainer>
   )
 }

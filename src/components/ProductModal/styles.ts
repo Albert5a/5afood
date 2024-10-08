@@ -24,15 +24,13 @@ export const ModalContainer = styled.div`
 
   // ao descomponentizar modal after vira uma classe .overlay para que o fechamento do modal aconteça somente ao clicar no fundo
 
-  &::after {
-    content: '';
+  .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    /* z-index: 4; */
   }
 `
 
