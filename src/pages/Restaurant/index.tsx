@@ -1,58 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
+import { Product, Restaurants } from '../Home'
 import { CardList } from '../../components/CardList'
-
-import sushi from '../../assets/images/sushi.png'
-import massa from '../../assets/images/massa.png'
-
-// const products: Products[] = [
-//   {
-//     id: 1,
-//     title: 'Pizza Marguerita',
-//     description:
-//       'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas',
-//     image: sushi,
-//   },
-//   {
-//     id: 2,
-//     title: 'Pizza Marguerita',
-//     description:
-//       'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-//     image: massa,
-//   },
-//   {
-//     id: 3,
-//     title: 'Pizza Marguerita',
-//     description:
-//       'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-//     image: massa,
-//   },
-//   {
-//     id: 4,
-//     title: 'Pizza Marguerita',
-//     description:
-//       'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-//     image: massa,
-//   },
-//   {
-//     id: 5,
-//     title: 'Pizza Marguerita',
-//     description:
-//       'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-//     image: massa,
-//   },
-//   {
-//     id: 6,
-//     title: 'Pizza Marguerita',
-//     description:
-//       'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-//     image: massa,
-//   }
-// ]
-
 const Restaurant = () => {
-  // const { id } = useParams();
-  // return (<CardList columns="restaurant" products={products} />)
+  const [restaurant, setRestaurant] = useState<Restaurants>()
+  const [products, setProducts] = useState<Product[] | undefined>([])
+
+  const location = useLocation()
+  const path = location.pathname
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood${path}`)
+      .then((res) => res.json())
+      .then((res) => setRestaurant(res))
+  }, [])
+
+  useEffect(() => {
+    setProducts(restaurant?.cardapio)
+  }, [restaurant])
+
+  return <CardList columns="restaurant" products={products} />
 }
 
 export default Restaurant

@@ -53,3 +53,7 @@ export const BannerStoreContent = styled.div`
     font-weight: 100;
   }
 `
+
+export const TypeFood = styled.p`
+  text-transform: capitalize;
+`

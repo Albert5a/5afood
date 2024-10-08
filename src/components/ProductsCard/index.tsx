@@ -11,25 +11,29 @@ import {
 import Button from '../Button'
 
 type Props = {
-  title: string
+  name: string
   description: string
   image: string
   to?: string
   onClick?: () => void
 }
 
-const ProductsCard = ({ title, description, image, onClick }: Props) => {
+const ProductsCard = ({ name, description, image, onClick }: Props) => {
   return (
     <CardComponent>
       <ProductImage src={image} alt="title" />
       <InfoContainter>
         <div>
           <TitleValuationContent>
-            <ProductTitle>{title}</ProductTitle>
+            <ProductTitle>{name}</ProductTitle>
           </TitleValuationContent>
-          <Description>{description}</Description>
+          <Description>
+            {description.length > 170
+              ? `${description.substring(0, 170)}...`
+              : description}
+          </Description>
         </div>
-        <Button type="link" onClick={onClick} title="Saiba mais">
+        <Button type='button' onClick={onClick} title="Saiba mais">
           Saiba mais
         </Button>
       </InfoContainter>

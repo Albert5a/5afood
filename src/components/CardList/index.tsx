@@ -3,22 +3,30 @@ import { Container, List } from './styles'
 import RestaurantsCard from '../RestaurantsCard'
 import ProductsCard from '../ProductsCard'
 import ProductModal from '../ProductModal'
-import { Restaurants } from '../../pages/Home'
+import { Product, Restaurants } from '../../pages/Home'
 
 export type Props = {
   columns: 'home' | 'restaurant'
   restaurants?: Restaurants[]
-  products?: Restaurants[]
+  products?: Product[]
+  onClick?: () => void
 }
 
 export const CardList = ({ columns, restaurants, products }: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [image, setImage] = useState('')
+  const [portion, setPortion] = useState('')
+  const [price, setPrice] = useState<number>()
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(price)
+  const handleClick = ({ preco, nome, descricao, foto, porcao }: Product) => {
+    setPrice(preco)
+    setName(nome)
+    setDescription(descricao)
+    setImage(foto)
+    setPortion(porcao)
+    setModalIsOpen(true)
   }
 
   const getRestaurantTags = (restaurant: Restaurants) => {
@@ -42,9 +50,9 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
           {columns === 'home' &&
             restaurants &&
             restaurants.map((restaurant) => {
-              const formattedTitle = restaurant.titulo
-                .toLowerCase()
-                .replace(/ /g, '-')
+              // const formattedTitle = restaurant.titulo
+              //   .toLowerCase()
+              //   .replace(/ /g, '-')
               return (
                 <RestaurantsCard
                   key={restaurant.id}
@@ -53,7 +61,7 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
                   image={restaurant.capa}
                   valuation={restaurant.avaliacao}
                   infos={getRestaurantTags(restaurant)}
-                  to={`/restaurants/${formattedTitle}`}
+                  to={`/restaurantes/${restaurant.id}`}
                 />
               )
             })}
@@ -62,15 +70,20 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
             products.map((product) => (
               <ProductsCard
                 key={product.id}
-                title={product.titulo}
+                name={product.nome}
                 description={product.descricao}
-                image={product.capa}
-                onClick={() => setModalIsOpen(true)}
+                image={product.foto}
+                onClick={() => handleClick(product)}
               />
             ))}
         </List>
       </Container>
       <ProductModal
+        image={image}
+        name={name}
+        description={description}
+        portion={portion}
+        price={price}
         onClick={() =>
           modalIsOpen ? setModalIsOpen(false) : setModalIsOpen(true)
         }

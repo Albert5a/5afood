@@ -26,6 +26,7 @@ type Props = {
   image: string
   infos: string[]
   to?: string
+  onClick?: () => void
 }
 
 const RestaurantsCard = ({
@@ -34,7 +35,8 @@ const RestaurantsCard = ({
   description,
   image,
   infos,
-  to
+  to,
+  onClick
 }: Props) => {
   return (
     <CardComponent>
@@ -55,7 +57,7 @@ const RestaurantsCard = ({
           </TitleValuationContent>
           <Description>{description}</Description>
         </div>
-        <Button type="link" to={to} title="Saiba mais">
+        <Button type="link" to={to} onClick={onClick} title="Saiba mais">
           Saiba mais
         </Button>
       </InfoContainter>

@@ -5,25 +5,26 @@ export const CardComponent = styled.div`
   background-color: ${Colors.colorSecondary};
   width: 320px;
   padding: 8px;
-  margin-top: 40px;
   height: 338px;
+  margin-bottom: 32px;
 `
 
 export const ProductImage = styled.img`
   width: 304px;
+  height: 167px;
   margin-bottom: 8px;
   display: block;
+  object-fit: cover;
 `
 
 export const InfoContainter = styled.div`
   color: ${Colors.pinkLight};
   width: 100%;
   display: flex;
-  height: 173px;
+  height: 147px;
   flex-direction: column;
   padding: 0;
   margin: 0;
-  justify-content: space-between;
 `
 
 export const TitleValuationContent = styled.div`

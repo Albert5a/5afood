@@ -11,6 +11,7 @@ export const ProductImage = styled.img`
   width: 472px;
   height: 217px;
   display: block;
+  object-fit: cover;
 `
 
 export const Infos = styled.div`
