@@ -62,7 +62,7 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
                   valuation={restaurant.avaliacao}
                   id={restaurant.id}
                   infos={getRestaurantTags(restaurant)}
-                  to={`/restaurantes/${restaurant.id}`}
+                  to={`/restaurante/${restaurant.id}`}
                 />
               )
             })}
