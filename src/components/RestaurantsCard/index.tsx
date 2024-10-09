@@ -26,6 +26,7 @@ type Props = {
   image: string
   infos: string[]
   to?: string
+  id: number
   onClick?: () => void
 }
 
@@ -36,10 +37,11 @@ const RestaurantsCard = ({
   image,
   infos,
   to,
+  id,
   onClick
 }: Props) => {
   return (
-    <CardComponent>
+    <CardComponent to={`/restaurante/${id}`}>
       <ProductImage src={image} alt="title" />
       <Infos>
         {infos.map((info) => (

@@ -34,7 +34,6 @@ const Home = () => {
     //   .then((res) => res.json())
     //   .then((res) => setRestaurants(res))
   }, [])
-  console.log(restaurants)
 
   return <CardList columns="home" restaurants={restaurants} />
 }

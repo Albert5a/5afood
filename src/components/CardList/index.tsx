@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, List } from './styles'
+import { List } from './styles'
 import RestaurantsCard from '../RestaurantsCard'
 import ProductsCard from '../ProductsCard'
 import ProductModal from '../ProductModal'
@@ -45,7 +45,7 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
 
   return (
     <>
-      <Container>
+      <div className="container">
         <List columns={columns}>
           {columns === 'home' &&
             restaurants &&
@@ -60,24 +60,29 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
                   description={restaurant.descricao}
                   image={restaurant.capa}
                   valuation={restaurant.avaliacao}
+                  id={restaurant.id}
                   infos={getRestaurantTags(restaurant)}
                   to={`/restaurantes/${restaurant.id}`}
                 />
               )
             })}
-          {columns === 'restaurant' &&
-            products &&
-            products.map((product) => (
-              <ProductsCard
-                key={product.id}
-                name={product.nome}
-                description={product.descricao}
-                image={product.foto}
-                onClick={() => handleClick(product)}
-              />
-            ))}
+          {columns === 'restaurant' ? (
+            products ? (
+              products.map((product) => (
+                <ProductsCard
+                  key={product.id}
+                  name={product.nome}
+                  description={product.descricao}
+                  image={product.foto}
+                  onClick={() => handleClick(product)}
+                />
+              ))
+            ) : (
+              <h3>...carregando</h3>
+            )
+          ) : null}
         </List>
-      </Container>
+      </div>
       <ProductModal
         image={image}
         name={name}

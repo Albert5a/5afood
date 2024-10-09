@@ -38,10 +38,6 @@ const ProductModal = ({
   price,
   image
 }: Props) => {
-  // if (!price) {
-  //   return <h3>...carregando</h3>
-  // }
-
   return (
     <ModalContainer className={className}>
       <ModalContent>

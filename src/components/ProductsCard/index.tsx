@@ -7,7 +7,6 @@ import {
   ProductTitle,
   TitleValuationContent
 } from './styles'
-// import ImageProduct from '../ImageProduct'
 import Button from '../Button'
 
 type Props = {
@@ -33,7 +32,7 @@ const ProductsCard = ({ name, description, image, onClick }: Props) => {
               : description}
           </Description>
         </div>
-        <Button type='button' onClick={onClick} title="Saiba mais">
+        <Button type="button" onClick={onClick} title="Saiba mais">
           Saiba mais
         </Button>
       </InfoContainter>

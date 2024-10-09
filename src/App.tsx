@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, useLocation } from 'react-router-dom'
-import { AppContainer, Container, GlobalCss } from './styles'
+import { GlobalCss } from './styles'
 import Header from './components/Header'
 import HeaderStore from './components/HeaderStore'
 import Pages from './routes'
@@ -17,11 +17,9 @@ function App() {
     <BrowserRouter>
       <GlobalCss />
       <HeaderLayout />
-      <AppContainer>
-        <Container>
-          <Pages />
-        </Container>
-      </AppContainer>
+      <div>
+        <Pages />
+      </div>
       <Footer />
     </BrowserRouter>
   )
