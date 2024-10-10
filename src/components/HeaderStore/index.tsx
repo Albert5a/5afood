@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import logo from '../../assets/images/logo.png'
-
-import { HeaderBar } from './styles'
 import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
+
+import { HeaderBar } from './styles'
 
 const HeaderStore = () => {
   const dispatch = useDispatch()

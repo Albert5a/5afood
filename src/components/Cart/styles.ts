@@ -62,6 +62,7 @@ export const Delete = styled.img`
   position: absolute;
   bottom: 8px;
   right: 8px;
+  cursor: pointer;
 `
 
 export const NamePrice = styled.div`

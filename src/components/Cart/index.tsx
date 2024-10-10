@@ -1,5 +1,10 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { close, remove } from '../../store/reducers/cart'
+import DeleteItem from '../../assets/images/delete.png'
 import Button from '../Button'
+import { formatPrice } from '../ProductModal'
 import {
   CartContainer,
   Delete,
@@ -11,12 +16,6 @@ import {
   SideBar,
   TotalValue
 } from './styles'
-import DeleteItem from '../../assets/images/delete.png'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
-import { close } from '../../store/reducers/cart'
-
-// acessível a partir da página do restaurante.
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -24,6 +23,16 @@ const Cart = () => {
   const dispatch = useDispatch()
   const closeCart = () => {
     dispatch(close())
+  }
+
+  const getTotalPrice = () => {
+    return items.reduce((accumulator, currentValue) => {
+      return (accumulator += currentValue.preco)
+    }, 0)
+  }
+
+  const removeItem = (id: number) => {
+    dispatch(remove(id))
   }
 
   return (
@@ -36,15 +45,19 @@ const Cart = () => {
               <ProductImage src={item.foto} alt={item.nome} />
               <NamePrice>
                 <h3>{item.nome}</h3>
-                <p>{item.preco}</p>
+                <p>{formatPrice(item.preco)}</p>
               </NamePrice>
-              <Delete src={DeleteItem} alt="Excluir prato" />
+              <Delete
+                onClick={() => removeItem(item.id)}
+                src={DeleteItem}
+                alt="Excluir prato"
+              />
             </Product>
           ))}
         </ProductsList>
         <TotalValue>
           <p>Valor total</p>
-          <p>R$ 60,00</p>
+          <p>{formatPrice(getTotalPrice())}</p>
         </TotalValue>
         <Button title="Comprar" type="button">
           Continuar com a entrega

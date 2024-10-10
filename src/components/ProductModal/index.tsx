@@ -43,9 +43,6 @@ const ProductModal = ({
   image,
   product
 }: Props) => {
-  // if (!product) {
-  //   return <h3>Carregando...</h3>
-  // }
   const dispatch = useDispatch()
   const addToCart = () => {
     dispatch(add(product))
