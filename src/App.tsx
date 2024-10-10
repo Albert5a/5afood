@@ -1,10 +1,13 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { BrowserRouter, useLocation } from 'react-router-dom'
-import { AppContainer, Container, GlobalCss } from './styles'
+import { GlobalCss } from './styles'
 import Header from './components/Header'
 import HeaderStore from './components/HeaderStore'
 import Pages from './routes'
 import Footer from './components/Footer'
+import { store } from './store'
+import Cart from './components/Cart'
 
 const HeaderLayout = () => {
   const location = useLocation()
@@ -14,16 +17,17 @@ const HeaderLayout = () => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalCss />
-      <HeaderLayout />
-      <AppContainer>
-        <Container>
+    <Provider store={store}>
+      <BrowserRouter>
+        <GlobalCss />
+        <Cart />
+        <HeaderLayout />
+        <div>
           <Pages />
-        </Container>
-      </AppContainer>
-      <Footer />
-    </BrowserRouter>
+        </div>
+        <Footer />
+      </BrowserRouter>
+    </Provider>
   )
 }
 

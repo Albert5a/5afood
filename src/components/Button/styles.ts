@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Colors } from '../../styles'
 
-export const ButtonContainer = styled.button`
+export const ButtonProduct = styled.button`
   width: 100%;
   height: 24px;
   padding: 4px;
@@ -12,11 +12,12 @@ export const ButtonContainer = styled.button`
   font-weight: bold;
   border: none;
   display: inline-block;
-  margin-top: 16px;
   cursor: pointer;
+  align-self: flex-end;
+  margin-top: auto;     /* Empurra o botão para o final */
 `
 
-export const ButtonLink = styled(Link)`
+export const ButtonRestaurant = styled(Link)`
   width: 82px;
   height: 24px;
   text-align: center;

@@ -1,14 +1,20 @@
 import styled from 'styled-components'
 import { Colors } from '../../styles'
+import { Link } from 'react-router-dom'
 
-export const CardComponent = styled.div`
+export const CardComponent = styled(Link)`
   width: 472px;
   margin-top: 40px;
   position: relative;
+  text-decoration: none;
+  color: ${Colors.colorSecondary};
 `
 
 export const ProductImage = styled.img`
+  width: 472px;
+  height: 217px;
   display: block;
+  object-fit: cover;
 `
 
 export const Infos = styled.div`
@@ -52,5 +58,5 @@ export const Valuation = styled.p`
   margin-right: 4px;
 `
 export const Description = styled.p`
-   font-size: 14px;
+  font-size: 14px;
 `

@@ -1,6 +1,9 @@
 import React from 'react'
-import { ButtonContainer, ButtonLink } from './styles'
-import { useLocation } from 'react-router-dom'
+import {
+  ButtonProduct,
+  ButtonRestaurant
+} from './styles'
+// import { useLocation } from 'react-router-dom'
 
 export type Props = {
   type: 'button' | 'link'
@@ -11,20 +14,20 @@ export type Props = {
 }
 
 const Button = ({ type, title, to, onClick, children }: Props) => {
-  const location = useLocation();
-  type = location.pathname === '/' ? 'link' : 'button';
+  // const location = useLocation()
+  // type = location.pathname === '/' ? 'link' : 'button'
   if (type === 'button') {
     return (
-      <ButtonContainer type="button" title={title} onClick={onClick}>
+      <ButtonProduct type={type} title={title} onClick={onClick}>
         {children}
-      </ButtonContainer>
+      </ButtonProduct>
     )
   }
 
   return (
-    <ButtonLink type='link' to={to as string} title={title}>
+    <ButtonRestaurant type={type} to={to as string} title={title}>
       {children}
-    </ButtonLink>
+    </ButtonRestaurant>
   )
 }
 

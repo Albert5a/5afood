@@ -20,12 +20,14 @@ import Tag from '../Tag'
 type Props = {
   title: string
   category?: string
-  valuation: string
+  valuation: number
   description: string
   typeFood?: string
   image: string
   infos: string[]
   to?: string
+  id: number
+  onClick?: () => void
 }
 
 const RestaurantsCard = ({
@@ -34,10 +36,12 @@ const RestaurantsCard = ({
   description,
   image,
   infos,
-  to
+  to,
+  id,
+  onClick
 }: Props) => {
   return (
-    <CardComponent>
+    <CardComponent to={`/restaurante/${id}`}>
       <ProductImage src={image} alt="title" />
       <Infos>
         {infos.map((info) => (
@@ -55,7 +59,9 @@ const RestaurantsCard = ({
           </TitleValuationContent>
           <Description>{description}</Description>
         </div>
-        <Button type="link" to={to} title="Saiba mais">Saiba mais</Button>
+        <Button type="link" to={to} onClick={onClick} title="Saiba mais">
+          Saiba mais
+        </Button>
       </InfoContainter>
     </CardComponent>
   )

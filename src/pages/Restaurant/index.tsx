@@ -1,59 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
+import { Product, Restaurants } from '../Home'
 import { CardList } from '../../components/CardList'
-
-import sushi from '../../assets/images/sushi.png'
-import massa from '../../assets/images/massa.png'
-import Products from '../../models/Products'
-
-const products: Products[] = [
-  {
-    id: 1,
-    title: 'Pizza Marguerita',
-    description:
-      'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas',
-    image: sushi,
-  },
-  {
-    id: 2,
-    title: 'Pizza Marguerita',
-    description:
-      'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    image: massa,
-  },
-  {
-    id: 3,
-    title: 'Pizza Marguerita',
-    description:
-      'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    image: massa,
-  },
-  {
-    id: 4,
-    title: 'Pizza Marguerita',
-    description:
-      'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    image: massa,
-  },
-  {
-    id: 5,
-    title: 'Pizza Marguerita',
-    description:
-      'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    image: massa,
-  },
-  {
-    id: 6,
-    title: 'Pizza Marguerita',
-    description:
-      'A Pizza Marguerita leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    image: massa,
-  }
-]
-
+import { BannerStore, BannerStoreContent, TypeFood } from './styles'
+import { useGetRestaurantQuery } from '../../services/api'
 const Restaurant = () => {
-  // const { id } = useParams();
-  return (<CardList columns="restaurant" products={products} />)
+  const { id } = useParams()
+  const { data: restaurant, isLoading } = useGetRestaurantQuery(id!)
+  const [products, setProducts] = useState<Product[] | undefined>([])
+
+  useEffect(() => {
+    setProducts(restaurant?.cardapio)
+  }, [restaurant])
+
+  return (
+    <div>
+      <BannerStore style={{ backgroundImage: `url(${restaurant?.capa})` }}>
+        <BannerStoreContent>
+          <TypeFood>{restaurant?.tipo}</TypeFood>
+          <h3>{restaurant?.titulo}</h3>
+        </BannerStoreContent>
+      </BannerStore>
+      <CardList columns="restaurant" products={products} />
+    </div>
+  )
 }
 
 export default Restaurant
