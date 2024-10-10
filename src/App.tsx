@@ -7,6 +7,7 @@ import HeaderStore from './components/HeaderStore'
 import Pages from './routes'
 import Footer from './components/Footer'
 import { store } from './store'
+import Cart from './components/Cart'
 
 const HeaderLayout = () => {
   const location = useLocation()
@@ -19,6 +20,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <GlobalCss />
+        <Cart />
         <HeaderLayout />
         <div>
           <Pages />

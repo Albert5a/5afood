@@ -12,6 +12,10 @@ export const HeaderBar = styled.header`
   height: 160px;
   align-items: center;
   justify-content: space-between;
+
+  > a {
+    cursor: pointer;
+  }
 `
 
 
