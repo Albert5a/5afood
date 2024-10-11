@@ -5,13 +5,14 @@ import insta from '../../assets/images/insta.png'
 import face from '../../assets/images/face.png'
 import tt from '../../assets/images/tt.png'
 import { FooterContainer, FooterContent, SocialContent } from './styles'
+import { Logo } from '../../styles'
 
 const currentYear = new Date().getFullYear();
 
 const Footer = () => (
   <FooterContainer>
     <FooterContent>
-      <img src={logo} alt="5A FOOD" />
+      <Logo src={logo} alt="5A FOOD" />
       <SocialContent>
         <img src={insta} alt="Instagram" />
         <img src={face} alt="Facebook" />

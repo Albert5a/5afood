@@ -1,20 +1,28 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { breakpoints, Colors } from '../../styles'
 import { Link } from 'react-router-dom'
 
 export const CardComponent = styled(Link)`
   width: 472px;
-  margin-top: 40px;
   position: relative;
   text-decoration: none;
   color: ${Colors.colorSecondary};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 320px;
+  }
 `
 
 export const ProductImage = styled.img`
+  max-width: 100%;
   width: 472px;
   height: 217px;
   display: block;
   object-fit: cover;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 320px;
+    height: 160px;
+  }
 `
 
 export const Infos = styled.div`
@@ -23,7 +31,9 @@ export const Infos = styled.div`
   right: 16px;
   display: flex;
 `
+
 export const InfoContainter = styled.div`
+  max-width: 100%;
   width: 472px;
   height: 181px;
   display: flex;
@@ -40,11 +50,19 @@ export const TitleValuationContent = styled.div`
   width: 100%;
   justify-content: space-between;
   margin-bottom: 16px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 8px;
+  }
 `
 
 export const ProductTitle = styled.h2`
   font-size: 18px;
   font-weight: bold;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 16px;
+  }
 `
 
 export const ValuationContent = styled.div`
@@ -56,7 +74,15 @@ export const Valuation = styled.p`
   font-size: 18px;
   font-weight: bold;
   margin-right: 4px;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 16px;
+  }
 `
+
 export const Description = styled.p`
   font-size: 14px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 12px;
+  }
 `

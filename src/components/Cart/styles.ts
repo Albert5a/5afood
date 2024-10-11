@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { breakpoints, Colors } from '../../styles'
 
 export const Overlay = styled.div`
   position: absolute;
@@ -34,6 +34,10 @@ export const SideBar = styled.aside`
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(128, 128, 128, 0.6) rgba(0, 0, 0, 0.1);
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 280px;
+  }
 `
 
 export const ProductsList = styled.ul`
