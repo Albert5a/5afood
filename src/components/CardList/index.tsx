@@ -21,8 +21,6 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
   const [portion, setPortion] = useState('')
   const [price, setPrice] = useState<number>()
 
-  
-
   const handleClick = (product: Product) => {
     const { preco, nome, descricao, foto, porcao } = product // Desestruturação
     setDish(product)

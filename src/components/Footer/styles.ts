@@ -19,10 +19,10 @@ export const FooterContent = styled.div`
   p {
     text-align: center;
     font-size: 12px;
-    
+
     @media (max-width: ${breakpoints.tablet}) {
-    width: 300px;
-  }
+      width: 300px;
+    }
   }
 `
 
