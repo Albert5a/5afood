@@ -25,6 +25,7 @@ export type Props = {
 
 const Cart = ({ sidebar }: Props) => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const totalPrice = useSelector((state: RootReducer) => state.cart.totalPrice);
 
   const dispatch = useDispatch()
 
@@ -32,11 +33,11 @@ const Cart = ({ sidebar }: Props) => {
     dispatch(close())
   }
 
-  const getTotalPrice = () => {
-    return items.reduce((accumulator, currentValue) => {
-      return (accumulator += currentValue.preco)
-    }, 0)
-  }
+  // const getTotalPrice = () => {
+  //   return items.reduce((accumulator, currentValue) => {
+  //     return (accumulator += currentValue.preco)
+  //   }, 0)
+  // }
 
   const removeItem = (id: number) => {
     dispatch(remove(id))
@@ -68,7 +69,7 @@ const Cart = ({ sidebar }: Props) => {
           </ProductsList>
           <TotalValue>
             <p>Valor total</p>
-            <p>{formatPrice(getTotalPrice())}</p>
+            <p>{formatPrice(totalPrice)}</p>
           </TotalValue>
           <Button onClick={() => handleSidebarChange('delivery')} title="Comprar" type="button">
             Continuar com a entrega

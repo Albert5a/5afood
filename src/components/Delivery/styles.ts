@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import { ButtonProduct } from '../Button/styles'
 import { Colors } from '../../styles'
 
+type InputProps = {
+  maxWidth?: string
+}
+
 export const FormCheckout = styled.div`
   > h3 {
     font-size: 16px;
@@ -13,8 +17,9 @@ export const FormCheckout = styled.div`
   }
 `
 
-export const InputContent = styled.div`
+export const InputContent = styled.div<InputProps>`
   font-size: 14px;
+  width: ${(props) => props.maxWidth};
 
   label {
     display: block;
