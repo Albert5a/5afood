@@ -9,6 +9,4 @@ const Pages = () => (
     <Route path="/restaurante/:id" element={<Restaurant />} />
   </Routes>
 )
-
-// la-dolce-vita-trattoria hioki-sushi
 export default Pages

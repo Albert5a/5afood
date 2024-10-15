@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/cart'
+import { close, remove, setSidebar } from '../../store/reducers/cart'
 import DeleteItem from '../../assets/images/delete.png'
 import Button from '../Button'
 import { formatPrice } from '../ProductModal'
@@ -16,11 +16,18 @@ import {
   SideBar,
   TotalValue
 } from './styles'
+import Delivery from '../Delivery'
+import Payment from '../Payment'
 
-const Cart = () => {
+export type Props = {
+  sidebar: 'cart' | 'delivery' | 'payment'
+}
+
+const Cart = ({ sidebar }: Props) => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
+
   const closeCart = () => {
     dispatch(close())
   }
@@ -35,34 +42,50 @@ const Cart = () => {
     dispatch(remove(id))
   }
 
+  const handleSidebarChange = (value: 'cart' | 'delivery' | 'payment') => {
+    dispatch(setSidebar(value))
+  }
+
+  const renderContent = () => {
+    if (sidebar === 'cart') {
+      return (
+        <>
+          <ProductsList>
+            {items.map((item) => (
+              <Product key={item.id}>
+                <ProductImage src={item.foto} alt={item.nome} />
+                <NamePrice>
+                  <h3>{item.nome}</h3>
+                  <p>{formatPrice(item.preco)}</p>
+                </NamePrice>
+                <Delete
+                  onClick={() => removeItem(item.id)}
+                  src={DeleteItem}
+                  alt="Excluir prato"
+                />
+              </Product>
+            ))}
+          </ProductsList>
+          <TotalValue>
+            <p>Valor total</p>
+            <p>{formatPrice(getTotalPrice())}</p>
+          </TotalValue>
+          <Button onClick={() => handleSidebarChange('delivery')} title="Comprar" type="button">
+            Continuar com a entrega
+          </Button>
+        </>
+      )
+    } else if (sidebar === 'delivery') {
+      return <Delivery />
+    } else {
+      return <Payment />
+    }
+  }
+
   return (
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
-      <SideBar>
-        <ProductsList>
-          {items.map((item) => (
-            <Product key={item.id}>
-              <ProductImage src={item.foto} alt={item.nome} />
-              <NamePrice>
-                <h3>{item.nome}</h3>
-                <p>{formatPrice(item.preco)}</p>
-              </NamePrice>
-              <Delete
-                onClick={() => removeItem(item.id)}
-                src={DeleteItem}
-                alt="Excluir prato"
-              />
-            </Product>
-          ))}
-        </ProductsList>
-        <TotalValue>
-          <p>Valor total</p>
-          <p>{formatPrice(getTotalPrice())}</p>
-        </TotalValue>
-        <Button title="Comprar" type="button">
-          Continuar com a entrega
-        </Button>
-      </SideBar>
+      <SideBar sidebar={sidebar}>{renderContent()}</SideBar>
     </CartContainer>
   )
 }

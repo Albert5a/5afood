@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { breakpoints, Colors } from '../../styles'
+import { Props } from '.'
 
 export const Overlay = styled.div`
   position: absolute;
@@ -25,7 +26,7 @@ export const CartContainer = styled.div`
   }
 `
 
-export const SideBar = styled.aside`
+export const SideBar = styled.aside<Props>`
   background-color: ${Colors.colorSecondary};
   color: ${Colors.white};
   z-index: 1;

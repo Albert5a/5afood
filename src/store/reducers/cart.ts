@@ -4,11 +4,13 @@ import { Product } from '../../pages/Home'
 type CartState = {
   items: Product[]
   isOpen: boolean
+  sidebar: 'cart' | 'delivery' | 'payment'
 }
 
 const initialState: CartState = {
   items: [],
-  isOpen: false
+  isOpen: false,
+  sidebar: 'cart'
 }
 
 const cartSlice = createSlice({
@@ -31,12 +33,15 @@ const cartSlice = createSlice({
     },
     close: (state) => {
       state.isOpen = false
+    },
+    setSidebar: (state, action: PayloadAction<'cart' | 'delivery' | 'payment'>) => {
+      state.sidebar = action.payload 
     }
   }
 })
 
 cartSlice.actions.add
 
-export const { add, open, close, remove } = cartSlice.actions
+export const { add, open, close, remove, setSidebar } = cartSlice.actions
 
 export default cartSlice.reducer
