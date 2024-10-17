@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { breakpoints, Colors } from '../../styles'
 
 export const BannerStore = styled.div`
   height: 280px;
@@ -7,6 +7,10 @@ export const BannerStore = styled.div`
   background-size: cover;
   background-position: center;
   position: relative;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 160px;
+  }
 
   &::after {
     content: '';
@@ -34,11 +38,26 @@ export const BannerStoreContent = styled.div`
   height: 100%;
   padding: 24px 0;
 
+  > h3 {
+    @media (max-width: ${breakpoints.tablet}) {
+    font-size: 24px;
+  }
+  }
+
   p {
     font-weight: 100;
+  }
+
+  
+
+  @media (max-width: ${breakpoints.desktop}) {
+    padding: 24px 54px;
   }
 `
 
 export const TypeFood = styled.p`
   text-transform: capitalize;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 18px;
+  }
 `

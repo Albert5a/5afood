@@ -14,13 +14,17 @@ export type Props = {
 
 export const CardList = ({ columns, restaurants, products }: Props) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [dish, setDish] = useState<Product>()
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [image, setImage] = useState('')
   const [portion, setPortion] = useState('')
   const [price, setPrice] = useState<number>()
 
-  const handleClick = ({ preco, nome, descricao, foto, porcao }: Product) => {
+  const handleClick = (product: Product) => {
+    const { preco, nome, descricao, foto, porcao } = product // Desestruturação
+    setDish(product)
+    console.log(product)
     setPrice(preco)
     setName(nome)
     setDescription(descricao)
@@ -50,9 +54,6 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
           {columns === 'home' &&
             restaurants &&
             restaurants.map((restaurant) => {
-              // const formattedTitle = restaurant.titulo
-              //   .toLowerCase()
-              //   .replace(/ /g, '-')
               return (
                 <RestaurantsCard
                   key={restaurant.id}
@@ -83,7 +84,8 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
           ) : null}
         </List>
       </div>
-      <ProductModal
+      {dish ? (<ProductModal
+        product={dish}
         image={image}
         name={name}
         description={description}
@@ -93,7 +95,7 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
           modalIsOpen ? setModalIsOpen(false) : setModalIsOpen(true)
         }
         className={modalIsOpen ? 'visible' : ''}
-      />
+      />) : null}
     </>
   )
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { breakpoints, Colors } from '../../styles'
 import { ButtonProduct } from '../Button/styles'
 
 export const ModalContainer = styled.div`
@@ -52,6 +52,10 @@ export const ModalContent = styled.div`
     display: flex;
     justify-content: end;
   }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    max-width: 688px;
+  }
 `
 
 export const CloseButton = styled.img`
@@ -70,6 +74,11 @@ export const InfoContent = styled.div`
     height: 280px;
     margin-right: 24px;
     object-fit: cover;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      width: 240px;
+      height: 240px;
+    }
   }
 `
 
@@ -88,5 +97,3 @@ export const ModalInfo = styled.p`
   font-size: 14px;
   margin-bottom: 20px;
 `
-
-export const InfoButton = styled.div``

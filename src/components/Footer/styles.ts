@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { breakpoints, Colors } from '../../styles'
 
 export const FooterContainer = styled.header`
   background-color: ${Colors.colorPrimary};
@@ -16,13 +16,13 @@ export const FooterContent = styled.div`
   flex-direction: column;
   align-items: center;
 
-  img {
-    width: 160px;
-  }
-
   p {
     text-align: center;
     font-size: 12px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 300px;
+    }
   }
 `
 

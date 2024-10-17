@@ -10,7 +10,6 @@ import {
   Valuation,
   ValuationContent
 } from './styles'
-// import ImageProduct from '../ImageProduct'
 import Button from '../Button'
 import star from '../../assets/images/star.png'
 import Tag from '../Tag'
