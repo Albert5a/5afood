@@ -3,6 +3,8 @@ import { ButtonContainer, FormCheckout, InputContent, Row } from './styles'
 import Button from '../Button'
 import { setSidebar } from '../../store/reducers/cart'
 import { useDispatch } from 'react-redux'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 
 
@@ -13,6 +15,25 @@ const Delivery = () => {
     dispatch(setSidebar(value))
   }
 
+  // const form = useFormik({
+  //   initialValues: {
+  //     receiver: '',
+  //     address: '',
+  //     city: '',
+  //     cep: '',
+  //     number: '',
+  //     complement: ''
+  //   },
+  //   validationSchema: {
+  //     cardName: Yup.string().min(5, 'O nome precisa de pelo menos 5 caracteres').required('Obrigatório'),
+  //     cardNumber: Yup.string().min(16, 'Somente 16 números').max(16, 'Somente 16 números').required('Obrigatório'),
+  //     cvv: Yup.string().min(3, 'Somente 3 números').max(3, 'Somente 3 números').required('Obrigatório'),
+  //   },
+  //   onSubmit: (values) => {
+  //     console.log(values)
+  //   }
+  // })
+
   return (
     <FormCheckout>
       <h3>Entrega</h3>
@@ -21,20 +42,20 @@ const Delivery = () => {
         <input type="text" name="receiver" id="receiver" />
       </InputContent>
       <InputContent>
-        <label htmlFor="receiver">Endereço</label>
+        <label htmlFor="address">Endereço</label>
         <input type="text" name="address" id="address" />
       </InputContent>
       <InputContent>
-        <label htmlFor="receiver">Cidade</label>
-        <input type="text" name="address" id="address" />
+        <label htmlFor="city">Cidade</label>
+        <input type="text" name="city" id="city" />
       </InputContent>
       <Row>
         <InputContent>
-          <label htmlFor="cep">Endereço</label>
+          <label htmlFor="cep">CEP</label>
           <input type="text" name="cep" id="cep" />
         </InputContent>
         <InputContent>
-          <label htmlFor="number">Cidade</label>
+          <label htmlFor="number">Número</label>
           <input type="text" name="number" id="number" />
         </InputContent>
       </Row>

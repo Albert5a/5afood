@@ -6,7 +6,7 @@ type InputProps = {
   maxWidth?: string
 }
 
-export const FormCheckout = styled.div`
+export const FormCheckout = styled.form`
   > h3 {
     font-size: 16px;
     margin-bottom: 16px;
