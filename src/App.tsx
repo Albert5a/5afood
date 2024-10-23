@@ -16,13 +16,11 @@ const HeaderLayout = () => {
 }
 
 function App() {
-  
-
   return (
     <Provider store={store}>
       <BrowserRouter>
         <GlobalCss />
-        <Checkout />
+        <CartCheckout />
         <HeaderLayout />
         <div>
           <Pages />
@@ -33,7 +31,7 @@ function App() {
   )
 }
 
-function Checkout() {
+function CartCheckout() {
   const sidebar = useSelector((state: RootReducer) => state.cart.sidebar)
   return <Cart sidebar={sidebar} />
 }

@@ -56,6 +56,14 @@ export const ModalContent = styled.div`
   @media (max-width: ${breakpoints.desktop}) {
     max-width: 688px;
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 300px;
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 export const CloseButton = styled.img`
@@ -67,7 +75,6 @@ export const InfoContent = styled.div`
   display: flex;
   align-items: start;
   justify-content: center;
-  /* padding: 24px; */
 
   > img {
     width: 280px;
@@ -79,21 +86,54 @@ export const InfoContent = styled.div`
       width: 240px;
       height: 240px;
     }
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 4px;
+      margin-right: 0;
+    }
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      > div {
+        text-align: center;
+      }
+    }
 `
 
 export const ModalTitle = styled.h2`
   margin-bottom: 16px;
   font-size: 18px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
 `
 
 export const ModalText = styled.p`
   font-size: 14px;
   margin-bottom: 24px;
   line-height: 1.4em;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: 1.1em;
+  }
 `
 
 export const ModalInfo = styled.p`
   font-size: 14px;
   margin-bottom: 20px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
 `

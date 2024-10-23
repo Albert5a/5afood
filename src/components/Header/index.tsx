@@ -7,7 +7,7 @@ import VectorHeader from '../../assets/images/VectorHeader.png'
 import { Logo } from '../../styles'
 
 const Header = () => (
-  <HeaderBar style={{ backgroundImage: `url(${VectorHeader})` }}>
+  <HeaderBar id='header' style={{ backgroundImage: `url(${VectorHeader})` }}>
     <Link to="/">
       <Logo src={logo} alt="5a food" />
     </Link>

@@ -24,7 +24,6 @@ export const CardList = ({ columns, restaurants, products }: Props) => {
   const handleClick = (product: Product) => {
     const { preco, nome, descricao, foto, porcao } = product // Desestruturação
     setDish(product)
-    console.log(product)
     setPrice(preco)
     setName(nome)
     setDescription(descricao)

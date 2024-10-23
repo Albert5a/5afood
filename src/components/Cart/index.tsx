@@ -16,8 +16,7 @@ import {
   SideBar,
   TotalValue
 } from './styles'
-import Delivery from '../Delivery'
-import Payment from '../Payment'
+import Checkout from '../Checkout'
 
 export type Props = {
   sidebar: 'cart' | 'delivery' | 'payment'
@@ -25,7 +24,7 @@ export type Props = {
 
 const Cart = ({ sidebar }: Props) => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
-  const totalPrice = useSelector((state: RootReducer) => state.cart.totalPrice);
+  const totalPrice = useSelector((state: RootReducer) => state.cart.totalPrice)
 
   const dispatch = useDispatch()
 
@@ -47,46 +46,44 @@ const Cart = ({ sidebar }: Props) => {
     dispatch(setSidebar(value))
   }
 
-  const renderContent = () => {
-    if (sidebar === 'cart') {
-      return (
-        <>
-          <ProductsList>
-            {items.map((item) => (
-              <Product key={item.id}>
-                <ProductImage src={item.foto} alt={item.nome} />
-                <NamePrice>
-                  <h3>{item.nome}</h3>
-                  <p>{formatPrice(item.preco)}</p>
-                </NamePrice>
-                <Delete
-                  onClick={() => removeItem(item.id)}
-                  src={DeleteItem}
-                  alt="Excluir prato"
-                />
-              </Product>
-            ))}
-          </ProductsList>
-          <TotalValue>
-            <p>Valor total</p>
-            <p>{formatPrice(totalPrice)}</p>
-          </TotalValue>
-          <Button onClick={() => handleSidebarChange('delivery')} title="Comprar" type="button">
-            Continuar com a entrega
-          </Button>
-        </>
-      )
-    } else if (sidebar === 'delivery') {
-      return <Delivery />
-    } else {
-      return <Payment />
-    }
-  }
-
   return (
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
-      <SideBar sidebar={sidebar}>{renderContent()}</SideBar>
+      <SideBar sidebar={sidebar}>
+        {sidebar === 'cart' ? (
+          <>
+            <ProductsList>
+              {items.map((item) => (
+                <Product key={item.id}>
+                  <ProductImage src={item.foto} alt={item.nome} />
+                  <NamePrice>
+                    <h3>{item.nome}</h3>
+                    <p>{formatPrice(item.preco)}</p>
+                  </NamePrice>
+                  <Delete
+                    onClick={() => removeItem(item.id)}
+                    src={DeleteItem}
+                    alt="Excluir prato"
+                  />
+                </Product>
+              ))}
+            </ProductsList>
+            <TotalValue>
+              <p>Valor total</p>
+              <p>{formatPrice(totalPrice)}</p>
+            </TotalValue>
+            <Button
+              onClick={() => handleSidebarChange('delivery')}
+              title="Comprar"
+              type="button"
+            >
+              Continuar com a entrega
+            </Button>
+          </>
+        ) : (
+          <Checkout />
+        )}
+      </SideBar>
     </CartContainer>
   )
 }

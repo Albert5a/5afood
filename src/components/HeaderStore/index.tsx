@@ -17,15 +17,13 @@ const HeaderStore = () => {
   }
 
   return (
-    <div>
-      <HeaderBar>
+      <HeaderBar id='header'>
         <h3>Restaurantes</h3>
         <Link to="/">
           <Logo src={logo} alt="5a food" />
         </Link>
         <a onClick={openCart}>{items.length} produto(s) no carrinho</a>
       </HeaderBar>
-    </div>
   )
 }
 

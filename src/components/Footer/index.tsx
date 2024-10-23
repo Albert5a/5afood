@@ -7,12 +7,14 @@ import tt from '../../assets/images/tt.png'
 import { FooterContainer, FooterContent, SocialContent } from './styles'
 import { Logo } from '../../styles'
 
-const currentYear = new Date().getFullYear();
+const currentYear = new Date().getFullYear()
 
 const Footer = () => (
   <FooterContainer>
     <FooterContent>
-      <Logo src={logo} alt="5A FOOD" />
+      <a href="#header">
+        <Logo src={logo} alt="5A FOOD" />
+      </a>
       <SocialContent>
         <img src={insta} alt="Instagram" />
         <img src={face} alt="Facebook" />

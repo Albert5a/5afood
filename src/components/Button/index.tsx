@@ -10,15 +10,16 @@ export type Props = {
   title: string
   to?: string
   onClick?: () => void
+  onSubmit?: () => void
   children: string
 }
 
-const Button = ({ type, title, to, onClick, children }: Props) => {
+const Button = ({ type, title, to, onClick, onSubmit, children }: Props) => {
   // const location = useLocation()
   // type = location.pathname === '/' ? 'link' : 'button'
   if (type === 'button') {
     return (
-      <ButtonProduct type={type} title={title} onClick={onClick}>
+      <ButtonProduct type={type} title={title} onClick={onClick} onSubmit={onSubmit}>
         {children}
       </ButtonProduct>
     )
