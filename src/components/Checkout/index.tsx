@@ -45,12 +45,7 @@ const Checkout = () => {
         .max(8, 'Inválido')
         .required('Obrigatório'),
       number: Yup.string().required('Obrigatório'),
-      complement: Yup.string().required('Ponto de referência'),
-      cardName: Yup.string()
-        // .when((values, schema) => payWhithCard ? schema.required('Obrigatório') : schema),
-        // .oneOf([Yup.ref('receiver')], 'Os nomes são diferentes')
-        .min(5, 'Nome inválido')
-        .required('Obrigatório'),
+      cardName: Yup.string().min(5, 'Nome inválido').required('Obrigatório'),
       cardNumber: Yup.string()
         .min(16, 'Somente 16 números')
         .max(16, 'Somente 16 números')
@@ -101,6 +96,36 @@ const Checkout = () => {
     }
   })
 
+  const valuess = {
+    delivery: {
+      receiver: form.values.receiver,
+      address: {
+        description: form.values.address,
+        city: form.values.city,
+        zipCode: form.values.cep,
+        number: form.values.number,
+        complement: form.values.complement
+      }
+    },
+    payment: {
+      card: {
+        name: form.values.cardName,
+        number: form.values.cardNumber,
+        code: form.values.cvv,
+        expires: {
+          month: form.values.monthlyValidity,
+          year: form.values.annualValidity
+        }
+      }
+    },
+    products: [
+      {
+        id: 1,
+        price: 10
+      }
+    ]
+  }
+
   const getErrorMessage = (fieldName: string, message?: string) => {
     const isChanged = fieldName in form.touched
     const isInvalid = fieldName in form.errors
@@ -109,7 +134,7 @@ const Checkout = () => {
   }
 
   return (
-    <FormCheckout onSubmit={form.handleSubmit}>
+    <form onSubmit={form.handleSubmit}>
       {sidebar === 'delivery' ? (
         <>
           <h3>Entrega</h3>
@@ -284,15 +309,15 @@ const Checkout = () => {
           </Row>
           <ButtonContainer>
             <Button
-              onClick={() => console.log(form.values)}
-              type="button"
+              onClick={() => purchase(valuess)}
+              type="submit"
               title="Finalizar pagamento"
             >
               Finalizar pagamento
             </Button>
             <Button
               onClick={() => handleSidebarChange('delivery')}
-              type="button"
+              type="submit"
               title="Voltar para edição de endereço"
             >
               Voltar para edição de endereço
@@ -300,7 +325,7 @@ const Checkout = () => {
           </ButtonContainer>
         </>
       )}
-    </FormCheckout>
+    </form>
   )
 }
 

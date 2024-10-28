@@ -6,7 +6,7 @@ import {
 // import { useLocation } from 'react-router-dom'
 
 export type Props = {
-  type: 'button' | 'link'
+  type: 'button' | 'link' | 'submit'
   title: string
   to?: string
   onClick?: () => void
@@ -17,7 +17,7 @@ export type Props = {
 const Button = ({ type, title, to, onClick, onSubmit, children }: Props) => {
   // const location = useLocation()
   // type = location.pathname === '/' ? 'link' : 'button'
-  if (type === 'button') {
+  if (type === 'button' || type === 'submit') {
     return (
       <ButtonProduct type={type} title={title} onClick={onClick} onSubmit={onSubmit}>
         {children}

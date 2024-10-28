@@ -6,7 +6,7 @@ type Product = {
   price: number
 }
 
-type PurchasePayload = {
+export type PurchasePayload = {
   products: Product[]
   delivery: {
     receiver: string
@@ -44,14 +44,18 @@ const api = createApi({
     }),
     purchase: builder.mutation<any, PurchasePayload>({
       query: (body) => ({
-        url: 'checkout',   
+        url: 'checkout',
         method: 'POST',
-        body    
+        body
       })
     })
   })
 })
 
-export const { useGetRestaurantsQuery, useGetRestaurantQuery, usePurchaseMutation } = api
+export const {
+  useGetRestaurantsQuery,
+  useGetRestaurantQuery,
+  usePurchaseMutation
+} = api
 
 export default api
