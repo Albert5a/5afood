@@ -19,7 +19,7 @@ import {
 import Checkout from '../Checkout'
 
 export type Props = {
-  sidebar: 'cart' | 'delivery' | 'payment'
+  sidebar: 'cart' | 'delivery' | 'payment' | 'confirm'
 }
 
 const Cart = ({ sidebar }: Props) => {

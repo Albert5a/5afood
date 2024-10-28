@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-  ButtonProduct,
-  ButtonRestaurant
-} from './styles'
+import { ButtonProduct, ButtonRestaurant } from './styles'
 // import { useLocation } from 'react-router-dom'
 
 export type Props = {
@@ -19,7 +16,12 @@ const Button = ({ type, title, to, onClick, onSubmit, children }: Props) => {
   // type = location.pathname === '/' ? 'link' : 'button'
   if (type === 'button' || type === 'submit') {
     return (
-      <ButtonProduct type={type} title={title} onClick={onClick} onSubmit={onSubmit}>
+      <ButtonProduct
+        type={type}
+        title={title}
+        onClick={onClick}
+        onSubmit={onSubmit}
+      >
         {children}
       </ButtonProduct>
     )

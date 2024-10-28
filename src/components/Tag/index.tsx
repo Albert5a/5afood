@@ -1,17 +1,13 @@
-import React from "react"
-import { TagContainer } from "./styles"
-import { JsxElement } from "typescript"
-
+import React from 'react'
+import { TagContainer } from './styles'
 
 export type Props = {
   size?: 'small' | 'big'
   children: string | undefined
 }
 
-const Tag = ({size = 'small', children}: Props) => {
-  return (
-    <TagContainer size={size}>{children}</TagContainer>
-  )
+const Tag = ({ size = 'small', children }: Props) => {
+  return <TagContainer size={size}>{children}</TagContainer>
 }
 
 export default Tag

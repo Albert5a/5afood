@@ -4,7 +4,7 @@ import { Product } from '../../pages/Home'
 type CartState = {
   items: Product[]
   isOpen: boolean
-  sidebar: 'cart' | 'delivery' | 'payment'
+  sidebar: 'cart' | 'delivery' | 'payment' | 'confirm'
   totalPrice: number
 }
 
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
     close: (state) => {
       state.isOpen = false
     },
-    setSidebar: (state, action: PayloadAction<'cart' | 'delivery' | 'payment'>) => {
+    setSidebar: (state, action: PayloadAction<'cart' | 'delivery' | 'payment' | 'confirm'>) => {
       state.sidebar = action.payload 
     },
     setTotalPrice: (state) => {

@@ -3,18 +3,21 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { ButtonContainer, FormCheckout, InputContent, Row } from './styles'
-import Button from '../Button'
 import { setSidebar } from '../../store/reducers/cart'
-import { formatPrice } from '../ProductModal'
 import { usePurchaseMutation } from '../../services/api'
+import Button from '../Button'
+import { formatPrice } from '../ProductModal'
+import ConfirmOrder from '../ConfirmOrder'
+import { ButtonContainer, FormCheckout, InputContent, Row } from './styles'
 
 const Checkout = () => {
   const sidebar = useSelector((state: RootReducer) => state.cart.sidebar)
   const dispatch = useDispatch()
-  const [purchase, { isLoading, isError, data }] = usePurchaseMutation()
+  const [purchase, { isLoading, data }] = usePurchaseMutation()
 
-  const handleSidebarChange = (value: 'cart' | 'delivery' | 'payment') => {
+  const handleSidebarChange = (
+    value: 'cart' | 'delivery' | 'payment' | 'confirm'
+  ) => {
     dispatch(setSidebar(value))
   }
 
@@ -133,9 +136,9 @@ const Checkout = () => {
     return ''
   }
 
-  return (
-    <form onSubmit={form.handleSubmit}>
-      {sidebar === 'delivery' ? (
+  const renderCheckout = () => {
+    if (sidebar === 'delivery') {
+      return (
         <>
           <h3>Entrega</h3>
           <InputContent>
@@ -231,7 +234,9 @@ const Checkout = () => {
             </Button>
           </ButtonContainer>
         </>
-      ) : (
+      )
+    } else if (sidebar === 'payment') {
+      return (
         <>
           <h3>Pagamento - Valor a pagar {formatPrice(totalPrice)}</h3>
           <InputContent>
@@ -309,7 +314,9 @@ const Checkout = () => {
           </Row>
           <ButtonContainer>
             <Button
-              onClick={() => purchase(valuess)}
+              onClick={() => {
+                purchase(valuess), handleSidebarChange('confirm')
+              }}
               type="submit"
               title="Finalizar pagamento"
             >
@@ -317,15 +324,25 @@ const Checkout = () => {
             </Button>
             <Button
               onClick={() => handleSidebarChange('delivery')}
-              type="submit"
+              type="button"
               title="Voltar para edição de endereço"
             >
               Voltar para edição de endereço
             </Button>
           </ButtonContainer>
         </>
-      )}
-    </form>
+      )
+    } else {
+      return isLoading ? (
+        <h3>Carregando...</h3>
+      ) : (
+        <ConfirmOrder orderId={data?.orderId} />
+      )
+    }
+  }
+
+  return (
+    <FormCheckout onSubmit={form.handleSubmit}>{renderCheckout()}</FormCheckout>
   )
 }
 

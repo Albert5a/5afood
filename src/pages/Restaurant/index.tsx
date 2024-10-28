@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { CardList } from '../../components/CardList'
+import { useGetRestaurantQuery } from '../../services/api'
 
 import { Product } from '../Home'
-import { CardList } from '../../components/CardList'
 import { BannerStore, BannerStoreContent, TypeFood } from './styles'
-import { useGetRestaurantQuery } from '../../services/api'
 const Restaurant = () => {
   const { id } = useParams()
   const { data: restaurant } = useGetRestaurantQuery(id!)
