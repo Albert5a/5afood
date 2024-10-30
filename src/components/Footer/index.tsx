@@ -16,13 +16,28 @@ const Footer = () => (
         <Logo src={logo} alt="5A FOOD" />
       </a>
       <SocialContent>
-        <a href="https://www.instagram.com/fiveatech/" title='Link para instagram' target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.instagram.com/fiveatech/"
+          title="Link para instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={insta} alt="Instagram" />
         </a>
-        <a href="https://www.facebook.com/fiveatech/" title='Link para facebook' target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.facebook.com/fiveatech/"
+          title="Link para facebook"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={face} alt="Facebook" />
         </a>
-        <a href="https://www.instagram.com/fiveatech/" title='Link para instagram' target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://www.instagram.com/fiveatech/"
+          title="Link para instagram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={tt} alt="Twitter" />
         </a>
       </SocialContent>

@@ -14,6 +14,7 @@ import Button from '../Button'
 import { useDispatch } from 'react-redux'
 import { Product } from '../../pages/Home'
 import { add, open } from '../../store/reducers/cart'
+import { parseToBrl } from '../../utils'
 
 type Props = {
   className: string
@@ -24,13 +25,6 @@ type Props = {
   portion: string
   price: number | undefined
   product: Product
-}
-
-export const formatPrice = (preco = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
 }
 
 const ProductModal = ({
@@ -63,9 +57,9 @@ const ProductModal = ({
             <Button
               onClick={addToCart}
               type="button"
-              title={`Adicionar ao carrinho - ${formatPrice(price)}`}
+              title={`Adicionar ao carrinho - ${parseToBrl(price)}`}
             >
-              {`Adicionar ao carrinho - ${formatPrice(price)}`}
+              {`Adicionar ao carrinho - ${parseToBrl(price)}`}
             </Button>
           </div>
         </InfoContent>

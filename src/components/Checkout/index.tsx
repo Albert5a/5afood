@@ -6,7 +6,7 @@ import { RootReducer } from '../../store'
 import { setSidebar } from '../../store/reducers/cart'
 import { usePurchaseMutation } from '../../services/api'
 import Button from '../Button'
-import { formatPrice } from '../ProductModal'
+import { parseToBrl } from '../../utils'
 import ConfirmOrder from '../ConfirmOrder'
 import { ButtonContainer, FormCheckout, InputContent, Row } from './styles'
 
@@ -238,7 +238,7 @@ const Checkout = () => {
     } else if (sidebar === 'payment') {
       return (
         <>
-          <h3>Pagamento - Valor a pagar {formatPrice(totalPrice)}</h3>
+          <h3>Pagamento - Valor a pagar {parseToBrl(totalPrice)}</h3>
           <InputContent>
             <label htmlFor="cardName">Nome no cartão</label>
             <input

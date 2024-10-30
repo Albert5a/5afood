@@ -4,7 +4,7 @@ import { RootReducer } from '../../store'
 import { close, remove, setSidebar } from '../../store/reducers/cart'
 import DeleteItem from '../../assets/images/delete.png'
 import Button from '../Button'
-import { formatPrice } from '../ProductModal'
+import { parseToBrl } from '../../utils'
 import {
   CartContainer,
   Delete,
@@ -32,12 +32,6 @@ const Cart = ({ sidebar }: Props) => {
     dispatch(close())
   }
 
-  // const getTotalPrice = () => {
-  //   return items.reduce((accumulator, currentValue) => {
-  //     return (accumulator += currentValue.preco)
-  //   }, 0)
-  // }
-
   const removeItem = (id: number) => {
     dispatch(remove(id))
   }
@@ -58,7 +52,7 @@ const Cart = ({ sidebar }: Props) => {
                   <ProductImage src={item.foto} alt={item.nome} />
                   <NamePrice>
                     <h3>{item.nome}</h3>
-                    <p>{formatPrice(item.preco)}</p>
+                    <p>{parseToBrl(item.preco)}</p>
                   </NamePrice>
                   <Delete
                     onClick={() => removeItem(item.id)}
@@ -70,7 +64,7 @@ const Cart = ({ sidebar }: Props) => {
             </ProductsList>
             <TotalValue>
               <p>Valor total</p>
-              <p>{formatPrice(totalPrice)}</p>
+              <p>{parseToBrl(totalPrice)}</p>
             </TotalValue>
             <Button
               onClick={() => handleSidebarChange('delivery')}
