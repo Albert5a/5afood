@@ -37,7 +37,9 @@ const Cart = ({ sidebar }: Props) => {
   }
 
   const handleSidebarChange = (value: 'cart' | 'delivery' | 'payment') => {
-    dispatch(setSidebar(value))
+    if (totalPrice && totalPrice > 0) {
+      dispatch(setSidebar(value))
+    }
   }
 
   return (

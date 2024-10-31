@@ -130,10 +130,19 @@ const Checkout = () => {
   }
 
   const getErrorMessage = (fieldName: string, message?: string) => {
-    const isChanged = fieldName in form.touched
+    const isTouched = fieldName in form.touched
     const isInvalid = fieldName in form.errors
-    if (isChanged && isInvalid) return message
+
+    if (isTouched && isInvalid) return message
     return ''
+  }
+
+  const checkInputHasError = (fieldName: string) => {
+    const isTouched = fieldName in form.touched
+    const isInvalid = fieldName in form.errors
+    const hasError = (isTouched && isInvalid)
+
+    if (isTouched && isInvalid) return hasError
   }
 
   const renderCheckout = () => {
@@ -150,8 +159,8 @@ const Checkout = () => {
               value={form.values.receiver}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('receiver') ? 'error' : ''}
             />
-            <small>{getErrorMessage('receiver', form.errors.receiver)}</small>
           </InputContent>
           <InputContent>
             <label htmlFor="address">Endereço</label>
@@ -162,8 +171,8 @@ const Checkout = () => {
               value={form.values.address}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('address') ? 'error' : ''}
             />
-            <small>{getErrorMessage('address', form.errors.address)}</small>
           </InputContent>
           <InputContent>
             <label htmlFor="city">Cidade</label>
@@ -174,8 +183,8 @@ const Checkout = () => {
               value={form.values.city}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('city') ? 'error' : ''}
             />
-            <small>{getErrorMessage('city', form.errors.city)}</small>
           </InputContent>
           <Row>
             <InputContent>
@@ -187,8 +196,8 @@ const Checkout = () => {
                 value={form.values.cep}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkInputHasError('cep') ? 'error' : ''}
               />
-              <small>{getErrorMessage('cep', form.errors.cep)}</small>
             </InputContent>
             <InputContent>
               <label htmlFor="number">Número</label>
@@ -199,8 +208,8 @@ const Checkout = () => {
                 value={form.values.number}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkInputHasError('number') ? 'error' : ''}
               />
-              <small>{getErrorMessage('number', form.errors.number)}</small>
             </InputContent>
           </Row>
           <InputContent>
@@ -212,10 +221,8 @@ const Checkout = () => {
               value={form.values.complement}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('complement') ? 'error' : ''}
             />
-            <small>
-              {getErrorMessage('complement', form.errors.complement)}
-            </small>
           </InputContent>
           <ButtonContainer>
             <Button
@@ -248,8 +255,9 @@ const Checkout = () => {
               value={form.values.cardName}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
+              className={checkInputHasError('cardName') ? 'error' : ''}
             />
-            <small>{getErrorMessage('cardName', form.errors.cardName)}</small>
+            
           </InputContent>
           <Row>
             <InputContent maxWidth="80%">
@@ -261,10 +269,8 @@ const Checkout = () => {
                 value={form.values.cardNumber}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkInputHasError('cardNumber') ? 'error' : ''}
               />
-              <small>
-                {getErrorMessage('cardNumber', form.errors.cardNumber)}
-              </small>
             </InputContent>
             <InputContent maxWidth="20%">
               <label htmlFor="cvv">CVV</label>
@@ -275,8 +281,8 @@ const Checkout = () => {
                 value={form.values.cvv}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkInputHasError('cvv') ? 'error' : ''}
               />
-              <small>{getErrorMessage('cvv', form.errors.cvv)}</small>
             </InputContent>
           </Row>
           <Row>
@@ -289,13 +295,8 @@ const Checkout = () => {
                 value={form.values.monthlyValidity}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkInputHasError('monthlyValidity') ? 'error' : ''}
               />
-              <small>
-                {getErrorMessage(
-                  'monthlyValidity',
-                  form.errors.monthlyValidity
-                )}
-              </small>
             </InputContent>
             <InputContent>
               <label htmlFor="annualValidity">Ano de vencimento</label>
@@ -306,10 +307,8 @@ const Checkout = () => {
                 value={form.values.annualValidity}
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
+                className={checkInputHasError('annualValidity') ? 'error' : ''}
               />
-              <small>
-                {getErrorMessage('annualValidity', form.errors.annualValidity)}
-              </small>
             </InputContent>
           </Row>
           <ButtonContainer>

@@ -33,6 +33,10 @@ export const InputContent = styled.div<InputProps>`
     background-color: ${Colors.pinkLight};
     padding: 0 8px;
     border: 1px solid ${Colors.colorSecondary};
+
+    &.error {
+      border: 1px solid red;
+    }
   }
 `
 
