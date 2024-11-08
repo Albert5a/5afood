@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import { ButtonProduct } from '../Button/styles'
 import { Colors } from '../../styles'
+import { Field, Form } from 'formik'
 
 type InputProps = {
   maxWidth?: string
 }
 
-export const FormCheckout = styled.form`
+export const FormCheckout = styled(Form)`
   > h3 {
     font-size: 16px;
     margin-bottom: 16px;
@@ -25,18 +26,18 @@ export const InputContent = styled.div<InputProps>`
     display: block;
     margin-bottom: 8px;
   }
+`
 
-  input {
-    margin-bottom: 8px;
-    height: 32px;
-    width: 100%;
-    background-color: ${Colors.pinkLight};
-    padding: 0 8px;
-    border: 1px solid ${Colors.colorSecondary};
+export const InputField = styled(Field)`
+  margin-bottom: 8px;
+  height: 32px;
+  width: 100%;
+  background-color: ${Colors.pinkLight};
+  padding: 0 8px;
+  border: 1px solid ${Colors.colorSecondary};
 
-    &.error {
-      border: 1px solid red;
-    }
+  &.error {
+    border: 1px solid red;
   }
 `
 

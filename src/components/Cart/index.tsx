@@ -17,6 +17,7 @@ import {
   TotalValue
 } from './styles'
 import Checkout from '../Checkout'
+import { useNavigate } from 'react-router-dom'
 
 export type Props = {
   sidebar: 'cart' | 'delivery' | 'payment' | 'confirm'
@@ -25,6 +26,7 @@ export type Props = {
 const Cart = ({ sidebar }: Props) => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const totalPrice = useSelector((state: RootReducer) => state.cart.totalPrice)
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -36,9 +38,12 @@ const Cart = ({ sidebar }: Props) => {
     dispatch(remove(id))
   }
 
-  const handleSidebarChange = (value: 'cart' | 'delivery' | 'payment') => {
-    if (totalPrice && totalPrice > 0) {
-      dispatch(setSidebar(value))
+  const handleSidebarChange = () => {
+    if (items.length > 0) {
+      dispatch(setSidebar('delivery'))
+    } else {
+      dispatch(close())
+      navigate('/')
     }
   }
 
@@ -68,11 +73,7 @@ const Cart = ({ sidebar }: Props) => {
               <p>Valor total</p>
               <p>{parseToBrl(totalPrice)}</p>
             </TotalValue>
-            <Button
-              onClick={() => handleSidebarChange('delivery')}
-              title="Comprar"
-              type="button"
-            >
+            <Button onClick={handleSidebarChange} title="Comprar" type="button">
               Continuar com a entrega
             </Button>
           </>
