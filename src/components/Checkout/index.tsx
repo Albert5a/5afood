@@ -15,13 +15,26 @@ import {
   InputField,
   Row
 } from './styles'
+import { useNavigate } from 'react-router-dom'
+
+type CheckoutProps = {
+  receiver: string
+  address: string
+  city: string
+  cep: string
+  number: number
+  complement?: string
+  cardName?: string
+  cardNumber?: string
+  cvv?: number
+  monthlyValidity?: number
+  annualValidity?: number
+}
 
 const Checkout = () => {
-  const sidebar = useSelector((state: RootReducer) => state.cart.sidebar)
-  const dispatch = useDispatch()
   // const [purchase, { isLoading, data }] = usePurchaseMutation()
   const [currentStep, setCurrentStep] = useState(0)
-  const [checkoutData, setCheckoutData] = useState({
+  const [checkoutData, setCheckoutData] = useState<CheckoutProps>({
     receiver: '',
     address: '',
     city: '',
@@ -35,25 +48,11 @@ const Checkout = () => {
     annualValidity: 2024
   })
 
-  type Checkout = {
-    receiver: string
-    address: string
-    city: string
-    cep: string
-    number: number
-    complement?: string
-    cardName?: string
-    cardNumber?: string
-    cvv?: number
-    monthlyValidity?: number
-    annualValidity?: number
-  }
-
-  const makeRequest = (formData: Checkout) => {
+  const makeRequest = (formData: CheckoutProps) => {
     console.log('Form subimitted', formData)
   }
 
-  const nextStep = (newData: Checkout, final = false) => {
+  const nextStep = (newData: CheckoutProps, final = false) => {
     setCheckoutData((prev) => ({ ...prev, ...newData }))
 
     if (final) {
@@ -63,7 +62,7 @@ const Checkout = () => {
     setCurrentStep((prev) => prev + 1)
   }
 
-  const pervStep = (newData: Checkout) => {
+  const pervStep = (newData: CheckoutProps) => {
     setCheckoutData((prev) => ({ ...prev, ...newData }))
     setCurrentStep((prev) => prev - 1)
   }
@@ -83,20 +82,6 @@ const Checkout = () => {
 
 // const totalPrice = useSelector((state: RootReducer) => state.cart.totalPrice)
 
-// const form = useFormik({
-//   initialValues: {
-//     receiver: '',
-//     address: '',
-//     city: '',
-//     cep: '',
-//     number: 1,
-//     complement: '',
-//     cardName: '',
-//     cardNumber: '',
-//     cvv: 123,
-//     monthlyValidity: 12,
-//     annualValidity: 2024
-//   },
 //   validationSchema: Yup.object({
 //     receiver: Yup.string()
 //       .min(5, 'O nome precisa de pelo menos 5 caracteres')
@@ -403,30 +388,22 @@ const Checkout = () => {
 //   )
 // }
 
-type Checkout = {
-  receiver: string
-  address: string
-  city: string
-  cep: string
-  number: number
-  complement?: string
-  cardName?: string
-  cardNumber?: string
-  cvv?: number
-  monthlyValidity?: number
-  annualValidity?: number
-}
-
 interface StepProps {
-  next: (values: Checkout, final?: boolean) => void
-  data: Checkout
-  prev?: (values: Checkout) => void
+  next: (values: CheckoutProps, final?: boolean) => void
+  data: CheckoutProps
+  prev?: (values: CheckoutProps) => void
 }
 
 // botão de voltar recebe função antiga de estado global
+// const sidebar = useSelector((state: RootReducer) => state.cart.sidebar)
+
 export const StepOne = (props: StepProps) => {
-  const handleSubmit = (values: Checkout) => {
+  const handleSubmit = (values: CheckoutProps) => {
     props.next(values)
+  }
+  const dispatch = useDispatch()
+  const handleCart = () => {
+    dispatch(setSidebar('cart'))
   }
 
   return (
@@ -517,7 +494,7 @@ export const StepOne = (props: StepProps) => {
               Continuar com o Pamento
             </Button>
             <Button
-              // onClick={() => previousStep('cart')}
+              onClick={handleCart}
               type="button"
               title="Voltar para o carrinho"
             >
@@ -530,11 +507,9 @@ export const StepOne = (props: StepProps) => {
   )
 }
 
-
-
 // botão de voltar recebe função de step
 const StepTwo = (props: StepProps) => {
-  const handleSubmit = (values: Checkout) => {
+  const handleSubmit = (values: CheckoutProps) => {
     props.next(values, true)
   }
 
@@ -618,7 +593,7 @@ const StepTwo = (props: StepProps) => {
               Finalizar pagamento
             </Button>
             <Button
-              // onClick={() => previousStep('delivery')}
+              // onClick={() => handlePrevStep('delivery')}
               type="button"
               title="Voltar para edição de endereço"
             >
