@@ -26,6 +26,10 @@ export const InputContent = styled.div<InputProps>`
     display: block;
     margin-bottom: 8px;
   }
+
+  .textError {
+    color: 'red';
+  }
 `
 
 export const InputField = styled(Field)`

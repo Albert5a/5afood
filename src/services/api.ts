@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Restaurants } from '../pages/Home'
 
 type Product = {
-  id: number
+  id: string | undefined
   price: number
 }
 

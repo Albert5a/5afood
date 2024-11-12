@@ -12,14 +12,10 @@ export const List = styled.ul<Omit<Props, 'restaurants'>>`
 
   @media (max-width: ${breakpoints.desktop}) {
     /* display: flex; */
-    display: ${(props) =>
-    props.columns === 'home' ? 'flex' : ''};
-    flex-direction: ${(props) =>
-    props.columns === 'home' ? 'column' : ''};
-    gap: ${(props) =>
-    props.columns === 'home' ? '32px' : '24px'};
-    padding: ${(props) =>
-    props.columns === 'home' ? '' : '0 40px'};
+    display: ${(props) => (props.columns === 'home' ? 'flex' : '')};
+    flex-direction: ${(props) => (props.columns === 'home' ? 'column' : '')};
+    gap: ${(props) => (props.columns === 'home' ? '32px' : '24px')};
+    padding: ${(props) => (props.columns === 'home' ? '' : '0 40px')};
     grid-template-columns: 1fr 1fr;
     margin-bottom: 80px;
     align-items: center;
@@ -27,14 +23,11 @@ export const List = styled.ul<Omit<Props, 'restaurants'>>`
 
     margin-top: ${(props) => (props.columns === 'home' ? '40px' : '30px')};
   }
-  
+
   @media (max-width: ${breakpoints.tablet}) {
-    display: ${(props) =>
-    props.columns === 'home' ? '' : 'flex'};
-    flex-direction: ${(props) =>
-    props.columns === 'home' ? '' : 'column'};
-    /* padding: ${(props) =>
-    props.columns === 'home' ? '' : '0 40px'}; */
+    display: ${(props) => (props.columns === 'home' ? '' : 'flex')};
+    flex-direction: ${(props) => (props.columns === 'home' ? '' : 'column')};
+    /* padding: ${(props) => (props.columns === 'home' ? '' : '0 40px')}; */
     grid-template-columns: 1fr;
     margin-bottom: 40px;
     align-items: center;

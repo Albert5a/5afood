@@ -3,7 +3,7 @@ import { ConfirmText, ConfirmTitle } from './styles'
 import Button from '../Button'
 
 type Props = {
-  orderId: string
+  orderId: string | undefined
 }
 
 const ConfirmOrder = ({ orderId }: Props) => {
