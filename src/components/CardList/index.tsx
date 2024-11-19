@@ -3,7 +3,6 @@ import { List } from './styles'
 import RestaurantsCard from '../RestaurantsCard'
 import ProductsCard from '../ProductsCard'
 import ProductModal from '../ProductModal'
-import { Product, Restaurants } from '../../pages/Home'
 
 export type Props = {
   columns: 'home' | 'restaurant'

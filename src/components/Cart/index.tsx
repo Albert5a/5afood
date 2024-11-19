@@ -5,6 +5,7 @@ import { close, remove, setSidebar } from '../../store/reducers/cart'
 import DeleteItem from '../../assets/images/delete.png'
 import Button from '../Button'
 import { parseToBrl } from '../../utils'
+import Close from '../../assets/images/close 1.png'
 import {
   CartContainer,
   Delete,
@@ -17,7 +18,7 @@ import {
   TotalValue
 } from './styles'
 import Checkout from '../Checkout'
-import { useNavigate } from 'react-router-dom'
+import { CloseButton } from '../ProductModal/styles'
 
 export type Props = {
   sidebar: 'cart' | 'delivery' | 'payment' | 'confirm'
@@ -26,7 +27,6 @@ export type Props = {
 const Cart = ({ sidebar }: Props) => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const totalPrice = useSelector((state: RootReducer) => state.cart.totalPrice)
-  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -41,9 +41,6 @@ const Cart = ({ sidebar }: Props) => {
   const handleSidebarChange = () => {
     if (items.length > 0) {
       dispatch(setSidebar('delivery'))
-    } else {
-      dispatch(close())
-      navigate('/')
     }
   }
 
@@ -51,32 +48,46 @@ const Cart = ({ sidebar }: Props) => {
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
       <SideBar sidebar={sidebar}>
+        <header>
+          <CloseButton onClick={closeCart} src={Close} alt="Fechar" />
+        </header>
         {sidebar === 'cart' ? (
-          <>
-            <ProductsList>
-              {items.map((item) => (
-                <Product key={item.id}>
-                  <ProductImage src={item.foto} alt={item.nome} />
-                  <NamePrice>
-                    <h3>{item.nome}</h3>
-                    <p>{parseToBrl(item.preco)}</p>
-                  </NamePrice>
-                  <Delete
-                    onClick={() => removeItem(item.id)}
-                    src={DeleteItem}
-                    alt="Excluir prato"
-                  />
-                </Product>
-              ))}
-            </ProductsList>
-            <TotalValue>
-              <p>Valor total</p>
-              <p>{parseToBrl(totalPrice)}</p>
-            </TotalValue>
-            <Button onClick={handleSidebarChange} title="Comprar" type="button">
-              Continuar com a entrega
-            </Button>
-          </>
+          items.length > 0 ? (
+            <>
+              <ProductsList>
+                {items.map((item) => (
+                  <Product key={item.id}>
+                    <ProductImage src={item.foto} alt={item.nome} />
+                    <NamePrice>
+                      <h3>{item.nome}</h3>
+                      <p>{parseToBrl(item.preco)}</p>
+                    </NamePrice>
+                    <Delete
+                      onClick={() => removeItem(item.id)}
+                      src={DeleteItem}
+                      alt="Excluir prato"
+                    />
+                  </Product>
+                ))}
+              </ProductsList>
+              <TotalValue>
+                <p>Valor total</p>
+                <p>{parseToBrl(totalPrice)}</p>
+              </TotalValue>
+              <Button
+                onClick={handleSidebarChange}
+                title="Comprar"
+                type="button"
+              >
+                Continuar com a entrega
+              </Button>
+            </>
+          ) : (
+            <p>
+              Seu carrinho esta vazio. Volte ao restaurante e escolha um
+              produto!
+            </p>
+          )
         ) : (
           <Checkout />
         )}

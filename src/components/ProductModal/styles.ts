@@ -96,14 +96,14 @@ export const InfoContent = styled.div`
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-      > div {
-        text-align: center;
-      }
+    > div {
+      text-align: center;
     }
+  }
 `
 
 export const ModalTitle = styled.h2`

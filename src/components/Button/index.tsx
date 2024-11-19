@@ -9,9 +9,10 @@ export type Props = {
   onClick?: () => void
   onSubmit?: () => void
   children: string
+  disabled?: boolean
 }
 
-const Button = ({ type, title, to, onClick, onSubmit, children }: Props) => {
+const Button = ({ type, title, to, onClick, onSubmit, children, disabled }: Props) => {
   // const location = useLocation()
   // type = location.pathname === '/' ? 'link' : 'button'
   if (type === 'button' || type === 'submit') {
@@ -21,6 +22,7 @@ const Button = ({ type, title, to, onClick, onSubmit, children }: Props) => {
         title={title}
         onClick={onClick}
         onSubmit={onSubmit}
+        disabled={disabled}
       >
         {children}
       </ButtonProduct>

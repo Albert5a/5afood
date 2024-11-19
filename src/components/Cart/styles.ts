@@ -26,18 +26,32 @@ export const CartContainer = styled.div`
   }
 `
 
+export const CloseButton = styled.img`
+  cursor: pointer;
+  color: ${Colors.white};
+`
+
 export const SideBar = styled.aside<Props>`
   background-color: ${Colors.colorSecondary};
   color: ${Colors.white};
   z-index: 1;
   width: 360px;
-  padding: 32px 8px;
+  padding: 8px 8px 32px 8px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(128, 128, 128, 0.6) rgba(0, 0, 0, 0.1);
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 280px;
+  }
+
+  header {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 8px;
   }
 `
 

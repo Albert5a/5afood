@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { CardList } from '../../components/CardList'
 import { useGetRestaurantQuery } from '../../services/api'
 
-import { Product } from '../Home'
 import { BannerStore, BannerStoreContent, TypeFood } from './styles'
 const Restaurant = () => {
   const { id } = useParams()

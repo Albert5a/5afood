@@ -27,8 +27,8 @@ export const InputContent = styled.div<InputProps>`
     margin-bottom: 8px;
   }
 
-  .textError {
-    color: 'red';
+  p {
+    color: ${Colors.black};
   }
 `
 

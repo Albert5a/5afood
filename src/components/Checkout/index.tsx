@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Formik, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { RootReducer } from '../../store'
 import { setSidebar } from '../../store/reducers/cart'
 import { usePurchaseMutation } from '../../services/api'
@@ -16,40 +17,10 @@ import {
   Row
 } from './styles'
 
-type CheckoutProps = {
-  delivery: {
-    receiver: string
-    address: {
-      description: string
-      city: string
-      zipCode: string
-      number: number
-      complement: string
-    }
-  }
-  payment: {
-    card: {
-      name: string
-      number: string
-      code: number
-      expires: {
-        month: number
-        year: number
-      }
-    }
-  }
-  products: [
-    {
-      id: string | undefined
-      price: number
-    }
-  ]
-}
-
 const Checkout = () => {
   const [purchase, { data }] = usePurchaseMutation()
   const [orderId, setOrderId] = useState<string | undefined>(undefined)
-  const totalPrice = useSelector((state: RootReducer) => state.cart.totalPrice)
+  const { items } = useSelector((state: RootReducer) => state.cart)
   const [checkoutData, setCheckoutData] = useState<CheckoutProps>({
     delivery: {
       receiver: '',
@@ -72,12 +43,10 @@ const Checkout = () => {
         }
       }
     },
-    products: [
-      {
-        id: '',
-        price: totalPrice
-      }
-    ]
+    products: items.map((item) => ({
+      id: item.id.toString(),
+      price: item.preco
+    }))
   })
   const [currentStep, setCurrentStep] = useState(0)
 
@@ -165,47 +134,40 @@ export const StepOne = (props: StepProps) => {
           <InputContent>
             <label htmlFor="receiver">Quem irá receber</label>
             <InputField type="text" name="receiver" id="receiver" />
-            <ErrorMessage
-              component="div"
-              className="textError"
-              name="receiver"
-            />
+            <ErrorMessage component="p" className="textError" name="receiver" />
           </InputContent>
           <InputContent>
             <label htmlFor="address">Endereço</label>
             <InputField type="text" name="address" id="address" />
-            <ErrorMessage
-              component="div"
-              className="textError"
-              name="address"
-            />
+            <ErrorMessage component="p" className="textError" name="address" />
           </InputContent>
           <InputContent>
             <label htmlFor="city">Cidade</label>
             <InputField type="text" name="city" id="city" />
-            <ErrorMessage component="div" className="textError" name="city" />
+            <ErrorMessage component="p" className="textError" name="city" />
           </InputContent>
           <Row>
             <InputContent>
               <label htmlFor="cep">CEP</label>
-              <InputField type="text" name="cep" id="cep" />
-              <ErrorMessage component="div" className="textError" name="cep" />
+              <InputField
+                type="text"
+                name="cep"
+                id="cep"
+                placeholder="00000-000"
+              />
+              <ErrorMessage component="p" className="textError" name="cep" />
             </InputContent>
             <InputContent>
               <label htmlFor="number">Número</label>
               <InputField type="number" name="number" id="number" />
-              <ErrorMessage
-                component="div"
-                className="textError"
-                name="number"
-              />
+              <ErrorMessage component="p" className="textError" name="number" />
             </InputContent>
           </Row>
           <InputContent>
             <label htmlFor="complement">Complemento</label>
             <InputField type="text" name="complement" id="complement" />
             <ErrorMessage
-              component="div"
+              component="p"
               className="textError"
               name="complement"
             />
@@ -231,8 +193,8 @@ export const StepOne = (props: StepProps) => {
 const stepTwoValidationSchema = Yup.object({
   cardName: Yup.string().min(5, 'Nome inválido').required('Obrigatório'),
   cardNumber: Yup.string()
-    .min(1, 'Somente 16 números')
-    .max(2, 'Somente 16 números')
+    .min(16, 'Somente 16 números')
+    .max(16, 'Somente 16 números')
     .required('Obrigatório'),
   cvv: Yup.string().min(3, '3 núm.').max(3, '3 núm.').required('Obrigatório'),
   monthlyValidity: Yup.string()
@@ -263,18 +225,19 @@ const StepTwo = (props: StepProps) => {
           <InputContent>
             <label htmlFor="cardName">Nome no cartão</label>
             <InputField type="string" name="cardName" id="cardName" />
-            <ErrorMessage
-              component="div"
-              className="textError"
-              name="cardName"
-            />
+            <ErrorMessage component="p" className="textError" name="cardName" />
           </InputContent>
           <Row>
             <InputContent maxWidth="80%">
               <label htmlFor="cardNumber">Número do cartão</label>
-              <InputField type="string" name="cardNumber" id="cardNumber" />
+              <InputField
+                type="string"
+                name="cardNumber"
+                id="cardNumber"
+                placeholder="0000-0000-0000-0000"
+              />
               <ErrorMessage
-                component="div"
+                component="p"
                 className="textError"
                 name="cardNumber"
               />
@@ -282,7 +245,7 @@ const StepTwo = (props: StepProps) => {
             <InputContent maxWidth="20%">
               <label htmlFor="cvv">CVV</label>
               <InputField type="number" name="cvv" id="cvv" />
-              <ErrorMessage component="div" className="textError" name="cvv" />
+              <ErrorMessage component="p" className="textError" name="cvv" />
             </InputContent>
           </Row>
           <Row>
@@ -294,7 +257,7 @@ const StepTwo = (props: StepProps) => {
                 id="monthlyValidity"
               />
               <ErrorMessage
-                component="div"
+                component="p"
                 className="textError"
                 name="monthlyValidity"
               />
@@ -307,7 +270,7 @@ const StepTwo = (props: StepProps) => {
                 id="annualValidity"
               />
               <ErrorMessage
-                component="div"
+                component="p"
                 className="textError"
                 name="annualValidity"
               />

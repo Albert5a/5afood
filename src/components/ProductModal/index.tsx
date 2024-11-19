@@ -12,7 +12,6 @@ import {
 } from './styles'
 import Button from '../Button'
 import { useDispatch } from 'react-redux'
-import { Product } from '../../pages/Home'
 import { add, open } from '../../store/reducers/cart'
 import { parseToBrl } from '../../utils'
 

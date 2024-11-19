@@ -2,11 +2,8 @@ import React from 'react'
 import { ConfirmText, ConfirmTitle } from './styles'
 import Button from '../Button'
 
-type Props = {
-  orderId: string | undefined
-}
 
-const ConfirmOrder = ({ orderId }: Props) => {
+const ConfirmOrder = ({ orderId }: CheckoutResponse) => {
   return (
     <div>
       <ConfirmTitle>Pedido realizado: {orderId}</ConfirmTitle>
